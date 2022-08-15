@@ -22,12 +22,18 @@
     # ---------------------------------------------------------------------------
     fullscreen: True
     # ---------------------------------------------------------------------------
-    Button:
-        id: btn
-        text: 'Выберите ОС'
-        on_release: dropdown.open(self)
-        size_hint_y: None
-        height: '48dp'
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: None
+            height: '48dp'
+            Button:
+                id: btn
+                text: 'Выберите ОС'
+                on_release: dropdown.open(self)
+                size_hint_y: None
+                height: '48dp'
+        BoxLayout:
     # ---------------------------------------------------------------------------
     Widget:
         on_parent: dropdown.dismiss()
