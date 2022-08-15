@@ -1,0 +1,8 @@
+/__pycache__/
+/merlib/fs/__pycache__/
+/bind/__pycache__/
+/kivy_venv/
+/kivy_venv_back/
+/.kivy/
+/.buildozer/
+/bin/
