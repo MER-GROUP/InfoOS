@@ -21,10 +21,6 @@
 <Info>:
     # ---------------------------------------------------------------------------
     fullscreen: True
-    name: 'DropDown'
-    # trick to not lost the Dropdown instance
-    # Dropdown itself is not really made to be used in kv.
-    __safe_id: [dropdown.__self__]
     # ---------------------------------------------------------------------------
     Button:
         id: btn
@@ -54,3 +50,4 @@
             size_hint_y: None
             height: '48dp'
             on_release: dropdown.select('Windows')
+    # ---------------------------------------------------------------------------
