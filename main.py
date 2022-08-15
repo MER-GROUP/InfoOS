@@ -71,12 +71,12 @@ from pathlib import Path
 from kivy.lang import Builder
 # Builder.load_file(str(Path(join(dirname(__file__), './design/'))))
 # записываем директорию в переменную kv_path
-# folder = './design/'
-# kv_path = str(Path(join(dirname(__file__), folder)))
+folder = './design/'
+kv_path = str(Path(join(dirname(__file__), folder)))
 # загрузить все файлы .kv по отдельности
-# for file in listdir(kv_path):
-#     kv_path_file = str(Path(join(kv_path, file)))
-#     Builder.load_file(kv_path_file)
+for file in listdir(kv_path):
+    kv_path_file = str(Path(join(kv_path, file)))
+    Builder.load_file(kv_path_file)
 # *****************************************************************************************
 # собственные модули
 # Работа с директориями и файлами ОС
@@ -106,6 +106,7 @@ class InfoApp(App):
     '''app widget'''
     # ---------------------------------------------------------------------------
     # vars
+    is_android = BooleanProperty(os_is_android)
     # ---------------------------------------------------------------------------
     # kivy vars
     title = 'Info OS'

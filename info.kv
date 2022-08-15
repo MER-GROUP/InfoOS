@@ -33,7 +33,13 @@
                 on_release: dropdown.open(self)
                 size_hint_y: None
                 height: '48dp'
-        BoxLayout:
+        Display:
+            DisplayScroll:
+                DisplayLabel:
+                    # id: info_label
+                    text: ''.join([(str(i) + '\n') for i in range(100)]) 
+                    # показать историю вычислений       
+                    # text: '\n\n'.join(reversed(settings().load_history()))   
     # ---------------------------------------------------------------------------
     Widget:
         on_parent: dropdown.dismiss()
