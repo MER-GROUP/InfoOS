@@ -8,6 +8,8 @@ __version__ = '1.00'
 from kivy.app import App
 # коробочный макет
 from kivy.uix.boxlayout import BoxLayout
+# работа с экраном
+from kivy.uix.screenmanager import Screen
 # свойства объекта (виджета)
 from kivy.properties import ObjectProperty, BooleanProperty, StringProperty
 # определение ОС
@@ -69,12 +71,12 @@ from pathlib import Path
 from kivy.lang import Builder
 # Builder.load_file(str(Path(join(dirname(__file__), './design/'))))
 # записываем директорию в переменную kv_path
-# folder = './design/'
-# kv_path = str(Path(join(dirname(__file__), folder)))
+folder = './design/'
+kv_path = str(Path(join(dirname(__file__), folder)))
 # загрузить все файлы .kv по отдельности
-# for file in listdir(kv_path):
-#     kv_path_file = str(Path(join(kv_path, file)))
-#     Builder.load_file(kv_path_file)
+for file in listdir(kv_path):
+    kv_path_file = str(Path(join(kv_path, file)))
+    Builder.load_file(kv_path_file)
 # *****************************************************************************************
 # собственные модули
 # Работа с директориями и файлами ОС
@@ -82,11 +84,12 @@ from merlib.fs.File import File
 file = File()
 # *****************************************************************************************
 # Действия программы
-class Info(BoxLayout):
+class Info(Screen):
     # ---------------------------------------------------------------------------
     '''root widget'''
     # ---------------------------------------------------------------------------
     # vars
+    fullscreen = BooleanProperty(False)
     # ---------------------------------------------------------------------------
     pass
     # ---------------------------------------------------------------------------
@@ -103,6 +106,7 @@ class InfoApp(App):
     '''app widget'''
     # ---------------------------------------------------------------------------
     # vars
+    is_android = BooleanProperty(os_is_android)
     # ---------------------------------------------------------------------------
     # kivy vars
     title = 'Info OS'

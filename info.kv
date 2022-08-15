@@ -17,12 +17,49 @@
 # from merlib.fs.File import File
 #:import file merlib.fs.File.File
 
-# Дизайн калькулятора
+# Дизайн программы
 <Info>:
-    # vars
-    orientation: 'vertical'
-    # design
+    # ---------------------------------------------------------------------------
+    fullscreen: True
+    # ---------------------------------------------------------------------------
     BoxLayout:
         orientation: 'vertical'
-        padding: 1
-        size_hint: 1, 1
+        BoxLayout:
+            size_hint_y: None
+            height: '48dp'
+            Button:
+                id: btn
+                text: 'Выберите ОС'
+                on_release: dropdown.open(self)
+                size_hint_y: None
+                height: '48dp'
+        Display:
+            DisplayScroll:
+                DisplayLabel:
+                    # id: info_label
+                    text: ''.join([(str(i) + '\n') for i in range(100)]) 
+                    # показать историю вычислений       
+                    # text: '\n\n'.join(reversed(settings().load_history()))   
+    # ---------------------------------------------------------------------------
+    Widget:
+        on_parent: dropdown.dismiss()
+    # ---------------------------------------------------------------------------
+    DropDown:
+        id: dropdown
+        on_select: btn.text = 'Выбрана ОС: {}'.format(args[1])
+        Button:
+            text: 'Android'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('Android')
+        Button:
+            text: 'Linux'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('Linux')
+        Button:
+            text: 'Windows'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('Windows')
+    # ---------------------------------------------------------------------------
