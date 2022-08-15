@@ -17,50 +17,40 @@
 # from merlib.fs.File import File
 #:import file merlib.fs.File.File
 
-# Дизайн калькулятора
+# Дизайн программы
 <Info>:
-    # # vars
-    # orientation: 'vertical'
-    # # design
-    # BoxLayout:
-    #     orientation: 'vertical'
-    #     padding: 1
-    #     size_hint: 1, 1
+    # ---------------------------------------------------------------------------
     fullscreen: True
     name: 'DropDown'
     # trick to not lost the Dropdown instance
     # Dropdown itself is not really made to be used in kv.
     __safe_id: [dropdown.__self__]
-    
+    # ---------------------------------------------------------------------------
     Button:
         id: btn
-        text: '-'
+        text: 'Выберите ОС'
         on_release: dropdown.open(self)
         size_hint_y: None
         height: '48dp'
-
+    # ---------------------------------------------------------------------------
     Widget:
         on_parent: dropdown.dismiss()
-
+    # ---------------------------------------------------------------------------
     DropDown:
-
         id: dropdown
-        on_select: btn.text = 'Selected value: {}'.format(args[1])
-
+        on_select: btn.text = 'Выбрана ОС: {}'.format(args[1])
         Button:
-            text: 'Value A'
+            text: 'Android'
             size_hint_y: None
             height: '48dp'
-            on_release: dropdown.select('A')
-
+            on_release: dropdown.select('Android')
         Button:
-            text: 'Value B'
+            text: 'Linux'
             size_hint_y: None
             height: '48dp'
-            on_release: dropdown.select('B')
-
+            on_release: dropdown.select('Linux')
         Button:
-            text: 'Value C'
+            text: 'Windows'
             size_hint_y: None
             height: '48dp'
-            on_release: dropdown.select('C')
+            on_release: dropdown.select('Windows')
