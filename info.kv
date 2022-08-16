@@ -11,7 +11,7 @@
 # :import settings Settings.Settings
 
 # Translate - автоматическая локализация программы на родной язык
-# #:import translate bind.Translate.Translate
+#:import translate bind.Translate.Translate
 
 # Работа с директориями и файлами ОС
 # from merlib.fs.File import File
@@ -53,7 +53,8 @@
             height: '48dp'
             DisplayButton:
                 id: about_btn
-                text: 'О программе'
+                # text: 'О программе'
+                text: translate().get_translate(file().file_get_local_language(), 'info')
                 # on_press: dropdown.open(self)
     # ---------------------------------------------------------------------------
     # выпадающее меню
