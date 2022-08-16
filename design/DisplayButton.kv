@@ -4,12 +4,12 @@
 #:import hex kivy.utils.get_color_from_hex
 
 # Шрифт (цифры) дисплея калькулятора
-<DisplayLabel@Label>:
+<DisplayButton@Button>:
     # размер шрифта
     font_size: '90sp' if app.is_android else '40sp'
 
     # цвет шрифта
-    color: 'black'
+    color: 'white'
 
     # межстрочный интервал
     line_height: 0.8
@@ -20,13 +20,10 @@
 
     # автоматически переносить/растягивать текст {
     text_size: self.size
-    halign: 'left'
+    halign: 'center'
     valign: 'top'
     # автоматически переносить/растягивать текст }
 
-    # пролистывание текста {
+    #размер виджета
     size_hint_y: None
-    height: self.texture_size[1]
-    text_size: self.width, None
-    padding: 5, 0
-    # пролистывание текста }
+    height: '48dp'
