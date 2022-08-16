@@ -45,8 +45,7 @@
                 DisplayLabel:
                     id: info_label
                     text: ''.join([(str(i) + '\n') for i in range(100)]) 
-                    # показать историю вычислений       
-                    # text: '\n\n'.join(reversed(settings().load_history())) 
+                    # text: translate().get_translate(file().file_get_local_language(), 'intro')
         BoxLayout:
             #размер виджета
             size_hint_y: None

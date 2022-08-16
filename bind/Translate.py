@@ -37,6 +37,10 @@ class Translate:
                     '[color=#808080]i@mer-group.ru\n' +
                     'github.com/mer-group[/color]'
         ],
+        'intro': [
+            'Данная программа предназначена для получения информации об аппаратном обеспечении и операционной системе устройства.',
+            'This program is designed to obtain information about the hardware and operating system of the device.'
+        ],
         'info': [
             'ИНФО',
             'INFO'
