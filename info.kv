@@ -30,7 +30,8 @@
             height: '48dp'
             DisplayButton:
                 id: btn
-                text: 'Выберите ОС'
+                # text: 'МЕНЮ'
+                text: translate().get_translate(file().file_get_local_language(), 'menu')
                 # on_release: dropdown.open(self)
                 on_press: dropdown.open(self)
         BoxLayout:
@@ -44,12 +45,8 @@
                 on_scroll_stop: app.button_enable(about_btn)
                 DisplayLabel:
                     id: info_label
-                    # глюк в количестве строк и символов
                     # text: ''.join([(str(i) + '\n') for i in range(100)]) 
-                    # text: ''.join([(str(i) + '\n') for i in range(43)]) 
-                    # text: translate().get_translate(file().file_get_local_language(), 'intro')
-                    # глюк в количестве символов
-                    text: '12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890'
+                    text: translate().get_translate(file().file_get_local_language(), 'intro')
         BoxLayout:
             #размер виджета
             size_hint_y: None
@@ -65,22 +62,58 @@
         on_parent: dropdown.dismiss()
     # ---------------------------------------------------------------------------
     # выпадающее меню
+    # что бы не было глюка надо выпвдающим списком перекрыть весь экран (screen)
     DropDown:
         id: dropdown
-        on_select: btn.text = 'Выбрана ОС: {}'.format(args[1])
+        on_select: btn.text = '{}'.format(args[1])
         Button:
-            text: 'Android'
+            text: 'function_1'
             size_hint_y: None
             height: '48dp'
-            on_release: dropdown.select('Android')
+            on_release: dropdown.select('method_1')
         Button:
-            text: 'Linux'
+            text: 'function_2'
             size_hint_y: None
             height: '48dp'
-            on_release: dropdown.select('Linux')
+            on_release: dropdown.select('method_2')
         Button:
-            text: 'Windows'
+            text: 'function_3'
             size_hint_y: None
             height: '48dp'
-            on_release: dropdown.select('Windows')
+            on_release: dropdown.select('method_3')
+        Button:
+            text: 'function_4'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('method_4')
+        Button:
+            text: 'function_5'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('method_5')
+        Button:
+            text: 'function_6'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('method_6')
+        Button:
+            text: 'function_7'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('method_7')
+        Button:
+            text: 'function_8'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('method_8')
+        Button:
+            text: 'function_9'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('method_9')
+        Button:
+            text: 'function_10'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('method_10')
     # ---------------------------------------------------------------------------

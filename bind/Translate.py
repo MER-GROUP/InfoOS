@@ -69,6 +69,10 @@ class Translate:
             'ОКРУГЛЕНИЕ ЧИСЕЛ',
             'ROUNDING NUMBERS'
         ],
+        'menu': [
+            'МЕНЮ',
+            'MENU'
+        ],
         'settings': [
             'НАСТРОЙКИ',
             'SETTINGS'
