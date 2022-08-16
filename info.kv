@@ -38,13 +38,23 @@
                 # заблокировать меню выбора во время листания тескта
                 # on_scroll_start: app.button_disable(btn)
                 on_scroll_move: app.button_disable(btn)
+                on_scroll_move: app.button_disable(about_btn)
                 # разблокировать меню выбора когда текст остановлен от листания
                 on_scroll_stop: app.button_enable(btn)
+                on_scroll_stop: app.button_enable(about_btn)
                 DisplayLabel:
                     id: info_label
                     text: ''.join([(str(i) + '\n') for i in range(100)]) 
                     # показать историю вычислений       
                     # text: '\n\n'.join(reversed(settings().load_history())) 
+        BoxLayout:
+            #размер виджета
+            size_hint_y: None
+            height: '48dp'
+            DisplayButton:
+                id: about_btn
+                text: 'О программе'
+                # on_press: dropdown.open(self)
     # ---------------------------------------------------------------------------
     # выпадающее меню
     Widget:
