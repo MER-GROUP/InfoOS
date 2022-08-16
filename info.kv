@@ -11,7 +11,7 @@
 # :import settings Settings.Settings
 
 # Translate - автоматическая локализация программы на родной язык
-# #:import translate bind.Translate.Translate
+#:import translate bind.Translate.Translate
 
 # Работа с директориями и файлами ОС
 # from merlib.fs.File import File
@@ -22,44 +22,98 @@
     # ---------------------------------------------------------------------------
     fullscreen: True
     # ---------------------------------------------------------------------------
-    BoxLayout:
+    Display:
         orientation: 'vertical'
         BoxLayout:
+            #размер виджета
             size_hint_y: None
             height: '48dp'
-            Button:
+            DisplayButton:
                 id: btn
-                text: 'Выберите ОС'
-                on_release: dropdown.open(self)
-                size_hint_y: None
-                height: '48dp'
-        Display:
+                # text: 'МЕНЮ'
+                text: translate().get_translate(file().file_get_local_language(), 'menu')
+                # on_release: dropdown.open(self)
+                on_press: dropdown.open(self)
+        BoxLayout:
             DisplayScroll:
+                # заблокировать меню выбора во время листания тескта
+                # on_scroll_start: app.button_disable(btn)
+                on_scroll_move: app.button_disable(btn)
+                on_scroll_move: app.button_disable(about_btn)
+                # разблокировать меню выбора когда текст остановлен от листания
+                on_scroll_stop: app.button_enable(btn)
+                on_scroll_stop: app.button_enable(about_btn)
                 DisplayLabel:
-                    # id: info_label
-                    text: ''.join([(str(i) + '\n') for i in range(100)]) 
-                    # показать историю вычислений       
-                    # text: '\n\n'.join(reversed(settings().load_history()))   
+                    id: info_label
+                    # text: ''.join([(str(i) + '\n') for i in range(100)]) 
+                    text: translate().get_translate(file().file_get_local_language(), 'intro')
+        BoxLayout:
+            #размер виджета
+            size_hint_y: None
+            height: '48dp'
+            DisplayButton:
+                id: about_btn
+                # text: 'О программе'
+                text: translate().get_translate(file().file_get_local_language(), 'info')
+                on_press: app.change_text(info_label, translate().get_translate(file().file_get_local_language(), 'about'))
     # ---------------------------------------------------------------------------
+    # выпадающее меню
     Widget:
         on_parent: dropdown.dismiss()
     # ---------------------------------------------------------------------------
+    # выпадающее меню
+    # что бы не было глюка надо выпвдающим списком перекрыть весь экран (screen)
     DropDown:
         id: dropdown
-        on_select: btn.text = 'Выбрана ОС: {}'.format(args[1])
-        Button:
-            text: 'Android'
+        on_select: btn.text = '{}'.format(args[1])
+        DropDownButton:
+            text: 'function_1'
             size_hint_y: None
             height: '48dp'
-            on_release: dropdown.select('Android')
-        Button:
-            text: 'Linux'
+            on_release: dropdown.select('method_1')
+        DropDownButton:
+            text: 'function_2'
             size_hint_y: None
             height: '48dp'
-            on_release: dropdown.select('Linux')
-        Button:
-            text: 'Windows'
+            on_release: dropdown.select('method_2')
+        DropDownButton:
+            text: 'function_3'
             size_hint_y: None
             height: '48dp'
-            on_release: dropdown.select('Windows')
+            on_release: dropdown.select('method_3')
+        DropDownButton:
+            text: 'function_4'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('method_4')
+        DropDownButton:
+            text: 'function_5'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('method_5')
+        DropDownButton:
+            text: 'function_6'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('method_6')
+        DropDownButton:
+            text: 'function_7'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('method_7')
+        DropDownButton:
+            text: 'function_8'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('method_8')
+        DropDownButton:
+            text: 'function_9'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('method_9')
+        DropDownButton:
+            text: 'function_10'
+            size_hint_y: None
+            height: '48dp'
+            on_release: dropdown.select('method_10')
     # ---------------------------------------------------------------------------
