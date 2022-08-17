@@ -59,6 +59,7 @@
                 # text: 'О программе'
                 text: translate().get_translate(file().file_get_local_language(), 'info')
                 on_press: app.change_text(info_label, translate().get_translate(file().file_get_local_language(), 'about'))
+                on_press: app.change_text(btn, translate().get_translate(file().file_get_local_language(), 'menu'))
     # ---------------------------------------------------------------------------
     # выпадающее меню
     Widget:
