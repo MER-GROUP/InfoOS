@@ -54,6 +54,9 @@ if 'android' == platform:
 
     # определить права доступа
     perms = [Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE]
+    # perms = [Permission.WRITE_EXTERNAL_STORAGE, 
+    #         Permission.READ_EXTERNAL_STORAGE, 
+    #         Permission.INSTALL_PACKAGES]
         
     # Получить права доступа на чтение и запись
     while check_permissions(perms)!= True:

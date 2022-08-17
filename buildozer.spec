@@ -48,11 +48,11 @@ requirements = python3==3.9.2,hostpython3==3.9.2,kivy,plyer
 
 # (str) Presplash of the application
 # presplash.filename = %(source.dir)s/data/presplash.png
-# presplash.filename = %(source.dir)s/ico/calc.png
+presplash.filename = %(source.dir)s/ico/info.png
 
 # (str) Icon of the application
 # icon.filename = %(source.dir)s/data/icon.png
-# icon.filename = %(source.dir)s/ico/calc.png
+icon.filename = %(source.dir)s/ico/info.png
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
 orientation = portrait
@@ -102,6 +102,7 @@ fullscreen = 0
 # android.permissions = VIBRATE
 # android.permissions = READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE
 android.permissions = READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE, VIBRATE
+# android.permissions = READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE, VIBRATE, INSTALL_PACKAGES
 
 # (list) features (adds uses-feature -tags to manifest)
 #android.features = android.hardware.usb.host

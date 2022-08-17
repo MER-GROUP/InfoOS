@@ -45,6 +45,10 @@ class Translate:
             'ИНФО',
             'INFO'
         ],
+        'info_install_name': [
+            'Имя установщика',
+            'Installer name'
+        ],
         'close': [
             'ЗАКРЫТЬ',
             'CLOSE'
@@ -73,9 +77,17 @@ class Translate:
             'МЕНЮ',
             'MENU'
         ],
+        'name_pkg': [
+            'Имя пакета приложения',
+            'App package name'
+        ],
         'settings': [
             'НАСТРОЙКИ',
             'SETTINGS'
+        ],
+        'sdk': [
+            'Версия SDK',
+            'SDK version'
         ]
     }
     # ---------------------------------------------------------------------------
