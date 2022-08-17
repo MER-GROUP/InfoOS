@@ -13,6 +13,9 @@
 # Translate - автоматическая локализация программы на родной язык
 #:import translate bind.Translate.Translate
 
+# API - манипуляции (действия) с API опепационных систем
+#:import api bind.API.API
+
 # Работа с директориями и файлами ОС
 # from merlib.fs.File import File
 #:import file merlib.fs.File.File
@@ -67,10 +70,12 @@
         id: dropdown
         on_select: btn.text = '{}'.format(args[1])
         DropDownButton:
-            text: 'function_1'
+            # Версия SDK
+            text: translate().get_translate(file().file_get_local_language(), 'sdk')
             size_hint_y: None
             height: '48dp'
-            on_release: dropdown.select('method_1')
+            on_release: dropdown.select(translate().get_translate(file().file_get_local_language(), 'sdk'))
+            on_release: app.change_text(info_label, api.sdk_show())
         DropDownButton:
             text: 'function_2'
             size_hint_y: None
