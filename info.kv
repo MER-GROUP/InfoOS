@@ -24,6 +24,10 @@
 <Info>:
     # ---------------------------------------------------------------------------
     fullscreen: True
+    name: 'DropDown'
+    # trick to not lost the Dropdown instance
+    # Dropdown itself is not really made to be used in kv.
+    __safe_id: [dropdown.__self__]
     # ---------------------------------------------------------------------------
     Display:
         orientation: 'vertical'
@@ -35,8 +39,8 @@
                 id: btn
                 # text: 'МЕНЮ'
                 text: translate().get_translate(file().file_get_local_language(), 'menu')
-                # on_release: dropdown.open(self)
-                on_press: dropdown.open(self)
+                # on_press: dropdown.open(self)
+                on_release: dropdown.open(self)
         BoxLayout:
             DisplayScroll:
                 # заблокировать меню выбора во время листания тескта
