@@ -45,6 +45,10 @@ class Translate:
             'ИНФО',
             'INFO'
         ],
+        'info_install_name': [
+            'Имя установщика',
+            'Installer name'
+        ],
         'close': [
             'ЗАКРЫТЬ',
             'CLOSE'

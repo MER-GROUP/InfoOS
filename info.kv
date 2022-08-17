@@ -70,25 +70,27 @@
     DropDown:
         id: dropdown
         on_select: btn.text = '{}'.format(args[1])
+        # Версия SDK
         DropDownButton:
-            # Версия SDK
             text: translate().get_translate(file().file_get_local_language(), 'sdk')
             size_hint_y: None
             height: '48dp'
             on_release: dropdown.select(translate().get_translate(file().file_get_local_language(), 'sdk'))
             on_release: app.change_text(info_label, api().sdk_show())
+        # Имя пакета этого приложения
         DropDownButton:
-            # Имя пакета этого приложения
             text: translate().get_translate(file().file_get_local_language(), 'name_pkg')
             size_hint_y: None
             height: '48dp'
             on_release: dropdown.select(translate().get_translate(file().file_get_local_language(), 'name_pkg'))
             on_release: app.change_text(info_label, api().package_name_show())
+        # Имя установщика
         DropDownButton:
-            text: 'function_3'
+            text: translate().get_translate(file().file_get_local_language(), 'info_install_name')
             size_hint_y: None
             height: '48dp'
-            on_release: dropdown.select('method_3')
+            on_release: dropdown.select(translate().get_translate(file().file_get_local_language(), 'info_install_name'))
+            on_release: app.change_text(info_label, api().package_name_installer_show())
         DropDownButton:
             text: 'function_4'
             size_hint_y: None
