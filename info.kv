@@ -78,10 +78,12 @@
             on_release: dropdown.select(translate().get_translate(file().file_get_local_language(), 'sdk'))
             on_release: app.change_text(info_label, api().sdk_show())
         DropDownButton:
-            text: 'function_2'
+            # Имя пакета этого приложения
+            text: translate().get_translate(file().file_get_local_language(), 'name_pkg')
             size_hint_y: None
             height: '48dp'
-            on_release: dropdown.select('method_2')
+            on_release: dropdown.select(translate().get_translate(file().file_get_local_language(), 'name_pkg'))
+            on_release: app.change_text(info_label, api().package_name_show())
         DropDownButton:
             text: 'function_3'
             size_hint_y: None

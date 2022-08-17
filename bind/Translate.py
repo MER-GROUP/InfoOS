@@ -73,6 +73,10 @@ class Translate:
             'МЕНЮ',
             'MENU'
         ],
+        'name_pkg': [
+            'Имя пакета приложения',
+            'App package name'
+        ],
         'settings': [
             'НАСТРОЙКИ',
             'SETTINGS'
