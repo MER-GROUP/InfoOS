@@ -75,7 +75,7 @@
             size_hint_y: None
             height: '48dp'
             on_release: dropdown.select(translate().get_translate(file().file_get_local_language(), 'sdk'))
-            on_release: app.change_text(info_label, api.sdk_show())
+            on_release: app.change_text(info_label, api().sdk_show())
         DropDownButton:
             text: 'function_2'
             size_hint_y: None
