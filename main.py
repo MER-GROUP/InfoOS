@@ -99,6 +99,11 @@ class Info(Screen):
     fullscreen = BooleanProperty(False)
     # ---------------------------------------------------------------------------
     # methods
+    # перегружаем метод add_widget для выпадающего меню DropDown
+    def add_widget(self, *args, **kwargs):
+        if 'content' in self.ids:
+            return self.ids.content.add_widget(*args, **kwargs)
+        return super(Info, self).add_widget(*args, **kwargs)
     # ---------------------------------------------------------------------------
     pass
     # ---------------------------------------------------------------------------

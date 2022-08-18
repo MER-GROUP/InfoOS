@@ -24,7 +24,9 @@
 <Info>:
     # ---------------------------------------------------------------------------
     fullscreen: True
+    # для выпадающего меню DropDown
     name: 'DropDown'
+    # для выпадающего меню DropDown
     # trick to not lost the Dropdown instance
     # Dropdown itself is not really made to be used in kv.
     __safe_id: [dropdown.__self__]
@@ -65,7 +67,7 @@
                 on_press: app.change_text(info_label, translate().get_translate(file().file_get_local_language(), 'about'))
                 on_press: app.change_text(btn, translate().get_translate(file().file_get_local_language(), 'menu'))
     # ---------------------------------------------------------------------------
-    # выпадающее меню
+    # для выпадающего меню DropDown
     Widget:
         on_parent: dropdown.dismiss()
     # ---------------------------------------------------------------------------
@@ -96,38 +98,8 @@
             on_release: dropdown.select(translate().get_translate(file().file_get_local_language(), 'info_install_name'))
             on_release: app.change_text(info_label, api().package_name_installer_show())
         DropDownButton:
-            text: 'function_4'
+            text: 'IN LISTS'
             size_hint_y: None
             height: '48dp'
-            on_release: dropdown.select('method_4')
-        DropDownButton:
-            text: 'function_5'
-            size_hint_y: None
-            height: '48dp'
-            on_release: dropdown.select('method_5')
-        DropDownButton:
-            text: 'function_6'
-            size_hint_y: None
-            height: '48dp'
-            on_release: dropdown.select('method_6')
-        DropDownButton:
-            text: 'function_7'
-            size_hint_y: None
-            height: '48dp'
-            on_release: dropdown.select('method_7')
-        DropDownButton:
-            text: 'function_8'
-            size_hint_y: None
-            height: '48dp'
-            on_release: dropdown.select('method_8')
-        DropDownButton:
-            text: 'function_9'
-            size_hint_y: None
-            height: '48dp'
-            on_release: dropdown.select('method_9')
-        DropDownButton:
-            text: 'function_10'
-            size_hint_y: None
-            height: '48dp'
-            on_release: dropdown.select('method_10')
+            on_release: dropdown.select('IN MENU')
     # ---------------------------------------------------------------------------
