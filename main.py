@@ -126,6 +126,9 @@ class InfoApp(App, Design, Hardware):
     menu_str = StringProperty(
         Translate().get_translate(file.file_get_local_language(), 'menu')
     )
+    api_str = StringProperty(
+        Translate().get_translate(file.file_get_local_language(), 'intro')
+    )
     # ---------------------------------------------------------------------------
     # kivy vars
     title = 'Info OS'
