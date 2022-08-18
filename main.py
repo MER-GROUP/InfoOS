@@ -10,6 +10,8 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 # работа с экраном
 from kivy.uix.screenmanager import Screen
+# выпадающее меню из кнопок
+from kivy.uix.dropdown import DropDown
 # свойства объекта (виджета)
 from kivy.properties import ObjectProperty, BooleanProperty, StringProperty
 # определение ОС
@@ -89,21 +91,27 @@ file = File()
 from bind.Design import Design
 # Hardware - манипуляции (действия) с железом устройства
 from bind.Hardware import Hardware
+# Translate - автоматическая локализация программы на родной язык
+from bind.Translate import Translate
 # *****************************************************************************************
-# Действия программы
+# декоратор для DropDown
+# выпадающее кнопочное меню
+class CustomDropDown(DropDown):
+    pass
+# *****************************************************************************************
+# Действия программы и дизайн
 class Info(Screen):
     # ---------------------------------------------------------------------------
     '''root widget'''
     # ---------------------------------------------------------------------------
     # vars
-    fullscreen = BooleanProperty(False)
+    pass
     # ---------------------------------------------------------------------------
     # methods
-    # перегружаем метод add_widget для выпадающего меню DropDown
-    def add_widget(self, *args, **kwargs):
-        if 'content' in self.ids:
-            return self.ids.content.add_widget(*args, **kwargs)
-        return super(Info, self).add_widget(*args, **kwargs)
+    # конструктор класса Info
+    def __init__(self, **kw):
+        super().__init__(**kw)
+        self.dropdown = CustomDropDown()
     # ---------------------------------------------------------------------------
     pass
     # ---------------------------------------------------------------------------
@@ -115,6 +123,12 @@ class InfoApp(App, Design, Hardware):
     # ---------------------------------------------------------------------------
     # vars
     is_android = BooleanProperty(os_is_android)
+    menu_str = StringProperty(
+        Translate().get_translate(file.file_get_local_language(), 'menu')
+    )
+    api_str = StringProperty(
+        Translate().get_translate(file.file_get_local_language(), 'intro')
+    )
     # ---------------------------------------------------------------------------
     # kivy vars
     title = 'Info OS'
