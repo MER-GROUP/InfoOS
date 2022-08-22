@@ -4,6 +4,28 @@
 # версия проекта
 __version__ = '1.00'
 # *****************************************************************************************
+# работа с логирование
+import logging
+# настройка логирования
+try:
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s [%(levelname)s] %(message)s",
+        handlers=[
+            logging.FileHandler("/storage/emulated/O/Download/debug.log"), # for Android
+            logging.StreamHandler()
+        ]
+    )
+except (FileNotFoundError):
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s [%(levelname)s] %(message)s",
+        handlers=[
+            logging.FileHandler("debug.log"), # for other OS
+            logging.StreamHandler()
+        ]
+    )
+# *****************************************************************************************
 # главное окно программы
 from kivy.app import App
 # коробочный макет
@@ -139,6 +161,24 @@ class InfoApp(App, Design, Hardware):
     # ---------------------------------------------------------------------------
 # *****************************************************************************************
 # запуск программы
+# вся программа логируется (в финальной версии отключите логирование программы)
 if __name__ == '__main__':
+    # ---------------------------------------------------------------------------
     InfoApp().run()
+    # ---------------------------------------------------------------------------
+    # делаем обработку ошибок и исключений и выводим на экран
+    # info_os = InfoApp()
+    # try:
+    #     info_os.run()
+    # except (AttributeError) as e:
+    #     error = 'ERROR: ' + str(e)
+    #     print(error)
+    #     info_os.stop()
+    #     # exit(1)
+    # except (Exception) as e:
+    #     error = 'ERROR: ' + str(e)
+    #     print(error)
+    #     info_os.api_str = error
+    #     info_os.run()
+    # ---------------------------------------------------------------------------
 # *****************************************************************************************
