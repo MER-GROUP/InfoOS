@@ -148,7 +148,8 @@ if __name__ == '__main__':
     except (AttributeError) as e:
         error = 'ERROR: ' + str(e)
         print(error)
-        exit(1)
+        info_os.stop()
+        # exit(1)
     except (Exception) as e:
         error = 'ERROR: ' + str(e)
         print(error)
