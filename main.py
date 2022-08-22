@@ -145,6 +145,10 @@ if __name__ == '__main__':
     info_os = InfoApp()
     try:
         info_os.run()
+    except (AttributeError) as e:
+        error = 'ERROR: ' + str(e)
+        print(error)
+        exit(1)
     except (Exception) as e:
         error = 'ERROR: ' + str(e)
         print(error)
