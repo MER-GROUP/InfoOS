@@ -4,6 +4,18 @@
 # версия проекта
 __version__ = '1.00'
 # *****************************************************************************************
+# работа с логирование
+import logging
+# настройка логирования
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler("debug.log"),
+        logging.StreamHandler()
+    ]
+)
+# *****************************************************************************************
 # главное окно программы
 from kivy.app import App
 # коробочный макет
