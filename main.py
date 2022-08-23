@@ -12,7 +12,9 @@ logging.basicConfig(
     # level=logging.ERROR,
     level=logging.DEBUG,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    filename = './debug.log' if True else './debug2.log', 
+    filename = './debug_android.log' \
+                if hasattr(__import__('sys'), 'getandroidapilevel') \
+                else './debug.log', 
     filemode = 'w'
     # handlers=[
     #     logging.FileHandler("/storage/emulated/0/Download/debug.log"), # for Android
