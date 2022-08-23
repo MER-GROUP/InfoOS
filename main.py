@@ -4,27 +4,22 @@
 # версия проекта
 __version__ = '1.00'
 # *****************************************************************************************
-# работа с логирование
+# работа с логированием
 import logging
 # настройка логирования
-try:
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s [%(levelname)s] %(message)s",
-        handlers=[
-            logging.FileHandler("/storage/emulated/0/Download/debug.log"), # for Android
-            logging.StreamHandler()
-        ]
-    )
-except (FileNotFoundError):
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s [%(levelname)s] %(message)s",
-        handlers=[
-            logging.FileHandler("debug.log"), # for other OS
-            logging.StreamHandler()
-        ]
-    )
+logging.basicConfig(
+    # level=logging.INFO,
+    # level=logging.ERROR,
+    level=logging.DEBUG,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    filename = './debug.log' if True else './debug2.log', 
+    filemode = 'w'
+    # handlers=[
+    #     logging.FileHandler("/storage/emulated/0/Download/debug.log"), # for Android
+    #     logging.FileHandler("debug.log"), # for other OS
+    #     logging.StreamHandler()
+    # ]
+)
 # *****************************************************************************************
 # главное окно программы
 from kivy.app import App
