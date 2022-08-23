@@ -4,27 +4,62 @@
 # версия проекта
 __version__ = '1.00'
 # *****************************************************************************************
-# работа с логирование
+# глобальная переменная
+# разрешен ли доступ на чтение и запись файлов
+is_access_open = True
+
+# если ОС Android, то загрузить следующие модули
+if hasattr(__import__('sys'), 'getandroidapilevel'):
+    # ----------------------------------------------------------------------
+    # модуль plyer - работа с железом устройства
+    # from plyer import vibrator
+    # ----------------------------------------------------------------------
+    # permissions - права доступа на чтение и запись файлов
+    from android.permissions import Permission, request_permissions, check_permission
+
+    # проверить права доступа
+    def check_permissions(perms):
+        for perm in perms:
+            if check_permission(perm) != True:
+                is_access_open = False
+                return False
+        return True
+
+    # определить права доступа
+    perms = [Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE]
+    # perms = [Permission.WRITE_EXTERNAL_STORAGE, 
+    #         Permission.READ_EXTERNAL_STORAGE, 
+    #         Permission.INSTALL_PACKAGES]
+        
+    # Получить права доступа на чтение и запись
+    while check_permissions(perms)!= True:
+        request_permissions(perms)
+    # ----------------------------------------------------------------------
+# *****************************************************************************************
+# собственные модули
+# Работа с директориями и файлами ОС
+from merlib.fs.File import File
+pre_file = File()
+directory = pre_file.file_get_path_to_downloads()
+# *****************************************************************************************
+# работа с логированием
 import logging
 # настройка логирования
-try:
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s [%(levelname)s] %(message)s",
-        handlers=[
-            logging.FileHandler("/storage/emulated/O/Download/debug.log"), # for Android
-            logging.StreamHandler()
-        ]
-    )
-except (FileNotFoundError):
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s [%(levelname)s] %(message)s",
-        handlers=[
-            logging.FileHandler("debug.log"), # for other OS
-            logging.StreamHandler()
-        ]
-    )
+logging.basicConfig(
+    # level=logging.INFO,
+    # level=logging.ERROR,
+    level=logging.DEBUG,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    filename = directory + 'debug.log' \
+                if hasattr(__import__('sys'), 'getandroidapilevel') \
+                else './debug.log', 
+    filemode = 'w'
+    # handlers=[
+    #     logging.FileHandler("/storage/emulated/0/Download/debug.log"), # for Android
+    #     logging.FileHandler("debug.log"), # for other OS
+    #     logging.StreamHandler()
+    # ]
+)
 # *****************************************************************************************
 # главное окно программы
 from kivy.app import App
@@ -54,38 +89,6 @@ if not 'android' == platform:
     Config.set('graphics','resizable', False)
     # является ли ОС - android
     os_is_android = False
-# *****************************************************************************************
-# глобальная переменная
-# разрешен ли доступ на чтение и запись файлов
-is_access_open = True
-
-# если ОС Android, то загрузить следующие модули
-if 'android' == platform:
-    # ----------------------------------------------------------------------
-    # модуль plyer - работа с железом устройства
-    # from plyer import vibrator
-    # ----------------------------------------------------------------------
-    # permissions - права доступа на чтение и запись файлов
-    from android.permissions import Permission, request_permissions, check_permission
-
-    # проверить права доступа
-    def check_permissions(perms):
-        for perm in perms:
-            if check_permission(perm) != True:
-                is_access_open = False
-                return False
-        return True
-
-    # определить права доступа
-    perms = [Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE]
-    # perms = [Permission.WRITE_EXTERNAL_STORAGE, 
-    #         Permission.READ_EXTERNAL_STORAGE, 
-    #         Permission.INSTALL_PACKAGES]
-        
-    # Получить права доступа на чтение и запись
-    while check_permissions(perms)!= True:
-        request_permissions(perms)
-    # ----------------------------------------------------------------------
 # *****************************************************************************************
 # Работа с директориями и файлами ОС
 # listdir - показывает файлы в конкретной папке
