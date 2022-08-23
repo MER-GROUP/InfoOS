@@ -12,7 +12,7 @@ try:
         level=logging.INFO,
         format="%(asctime)s [%(levelname)s] %(message)s",
         handlers=[
-            logging.FileHandler("/storage/emulated/O/Download/debug.log"), # for Android
+            logging.FileHandler("/storage/emulated/0/Download/debug.log"), # for Android
             logging.StreamHandler()
         ]
     )
