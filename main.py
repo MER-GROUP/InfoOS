@@ -40,8 +40,8 @@ if hasattr(__import__('sys'), 'getandroidapilevel'):
 # ++++++++++++++++++++++++++++++ РАБОТА С ФАЙЛОВОЙ СИСТЕМОЙ +++++++++++++++++++++++++++++++
 # собственные модули
 # Работа с директориями и файлами ОС
-from merlib.fs.File import PreFile
-pre_file = PreFile()
+from merlib.fs.File import File
+pre_file = File()
 directory_downloads = pre_file.file_get_path_to_downloads()
 # *****************************************************************************************
 # ++++++++++++++++++++++++++++++ РАБОТА С ЛОГИРОВАНИЕМ ++++++++++++++++++++++++++++++++++++
@@ -52,6 +52,7 @@ if True:
     # настройка логирования
     logging.basicConfig(
         level=logging.INFO,
+        # level=logging.WARNING,
         # level=logging.ERROR,
         # level=logging.DEBUG,
         format="%(asctime)s [%(levelname)s] %(message)s",
