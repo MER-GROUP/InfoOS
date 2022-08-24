@@ -22,7 +22,9 @@ if 'android' == platform:
     # информация о том, как было установлено приложение
     # (public final class InstallSourceInfo extends Object implements Parcelable)
     # https://developer.android.com/reference/android/content/pm/InstallSourceInfo
-    InstallSourceInfo = autoclass('android.content.pm.InstallSourceInfo')
+    # This class in API level 30.
+    # Этот класс введен в API level 30.
+    # InstallSourceInfo = autoclass('android.content.pm.InstallSourceInfo')
     # ---------------------------------------------------------------------------
     #
     #
@@ -101,6 +103,8 @@ class API:
     # getInstallSourceInfo(String packageName):
     #   Retrieves information about how a package was installed or updated.
     #   Извлекает информацию о том, как был установлен или обновлен пакет.
+    #   This method in API level 30.
+    #   Этот метод введен в API level 30.
     #   https://developer.android.com/reference/android/content/pm/PackageManager#getInstallSourceInfo(java.lang.String)
     #
     # getInstallingPackageName():
