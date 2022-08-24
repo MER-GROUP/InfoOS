@@ -39,7 +39,8 @@ version.filename = %(source.dir)s/main.py
 # comma separated e.g. requirements = sqlite3,kivy
 # jnius - is install default
 # requirements = python3==3.9.2,hostpython3==3.9.2,kivy
-requirements = python3==3.9.2,hostpython3==3.9.2,kivy,plyer
+# requirements = python3==3.9.2,hostpython3==3.9.2,kivy,plyer
+requirements = python3==3.9.2,hostpython3==3.9.2,kivy,plyer,pyjnius
 
 
 # (str) Custom source folders for requirements
