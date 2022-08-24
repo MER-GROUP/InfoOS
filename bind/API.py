@@ -73,7 +73,7 @@ class API:
         if 'android' == platform:
             try:
                 return str(
-                    Context.getPackageName()
+                    Context.getPackageName().toString()
                     )
             except JavaException as e:
                 return str(e)
