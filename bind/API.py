@@ -34,7 +34,7 @@ if 'android' == platform:
     # информация об ОС Android
     # (public static class Build.VERSION extends Object)
     # https://developer.android.com/reference/android/os/Build.VERSION
-    VERSION = autoclass('android.os.Build.VERSION')
+    VERSION = autoclass('android.os.Build$VERSION')
     # ---------------------------------------------------------------------------
     # plyer - работа с железом устройства
     # vibrator - управление вибрацией устройства
@@ -112,6 +112,8 @@ class API:
     #    (the installer of record), or null if not available.
     #   Имя пакета, ответственного за установку (установщик пакета), 
     #    или null, если он недоступен.
+    #   This method in API level 30.
+    #   Этот метод введен в API level 30.
     #   https://developer.android.com/reference/android/content/pm/InstallSourceInfo#getInstallingPackageName()
     #
     # getPackageName():
@@ -121,7 +123,7 @@ class API:
     def package_name_installer_show(self) -> str:
         if 'android' == platform:
             try:
-                if (30 < int(self.sdk_show())):
+                if (30 > int(self.sdk_show())):
                     return str(
                         Context.getPackageManager().getInstallerPackageName(
                             str(
