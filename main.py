@@ -46,9 +46,9 @@ directory = pre_file.file_get_path_to_downloads()
 import logging
 # настройка логирования
 logging.basicConfig(
-    # level=logging.INFO,
+    level=logging.INFO,
     # level=logging.ERROR,
-    level=logging.DEBUG,
+    # level=logging.DEBUG,
     format="%(asctime)s [%(levelname)s] %(message)s",
     filename = directory + 'debug.log' \
                 if hasattr(__import__('sys'), 'getandroidapilevel') \
