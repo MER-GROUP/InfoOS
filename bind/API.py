@@ -121,7 +121,7 @@ class API:
     def package_name_installer_show(self) -> str:
         if 'android' == platform:
             try:
-                if (30 > int(self.sdk_show())):
+                if (30 < int(self.sdk_show())):
                     return str(
                         Context.getPackageManager().getInstallerPackageName(
                             str(
