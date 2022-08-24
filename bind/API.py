@@ -76,9 +76,9 @@ class API:
                     Context.getPackageName().toString()
                     )
             except JavaException as e:
-                return str(e)
+                return 'EXCEPT: ' + str(e)
             except BaseException as e:
-                return str(e)
+                return 'EXCEPT: ' + str(e)
         else:
             # return 'Данный метод не реализован ...'
             return 'This method is not implemented ...'
