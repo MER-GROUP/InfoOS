@@ -38,9 +38,9 @@ if hasattr(__import__('sys'), 'getandroidapilevel'):
 # *****************************************************************************************
 # собственные модули
 # Работа с директориями и файлами ОС
-from merlib.fs.File import File
-pre_file = File()
-directory = pre_file.file_get_path_to_downloads()
+from merlib.fs.File import PreFile
+pre_file = PreFile()
+directory_downloads = pre_file.file_get_path_to_downloads()
 # *****************************************************************************************
 # работа с логированием
 import logging
@@ -50,7 +50,7 @@ logging.basicConfig(
     # level=logging.ERROR,
     # level=logging.DEBUG,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    filename = directory + 'debug.log' \
+    filename = directory_downloads + 'debug.log' \
                 if hasattr(__import__('sys'), 'getandroidapilevel') \
                 else './debug.log', 
     filemode = 'w'
