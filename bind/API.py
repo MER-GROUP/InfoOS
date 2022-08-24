@@ -22,7 +22,9 @@ if 'android' == platform:
     # информация о том, как было установлено приложение
     # (public final class InstallSourceInfo extends Object implements Parcelable)
     # https://developer.android.com/reference/android/content/pm/InstallSourceInfo
-    InstallSourceInfo = autoclass('android.content.pm.InstallSourceInfo')
+    # This class added in API level 30.
+    # Этот класс введен в API level 30.
+    # InstallSourceInfo = autoclass('android.content.pm.InstallSourceInfo')
     # ---------------------------------------------------------------------------
     #
     #
@@ -32,7 +34,7 @@ if 'android' == platform:
     # информация об ОС Android
     # (public static class Build.VERSION extends Object)
     # https://developer.android.com/reference/android/os/Build.VERSION
-    VERSION = autoclass('android.os.Build.VERSION')
+    VERSION = autoclass('android.os.Build$VERSION')
     # ---------------------------------------------------------------------------
     # plyer - работа с железом устройства
     # vibrator - управление вибрацией устройства
@@ -71,12 +73,12 @@ class API:
         if 'android' == platform:
             try:
                 return str(
-                    Context.getPackageName()
+                    Context.getPackageName().toString()
                     )
             except JavaException as e:
-                return str(e)
+                return 'EXCEPT JAVA: ' + str(e)
             except BaseException as e:
-                return str(e)
+                return 'EXCEPT PYTHON: ' + str(e)
         else:
             # return 'Данный метод не реализован ...'
             return 'This method is not implemented ...'
@@ -101,6 +103,8 @@ class API:
     # getInstallSourceInfo(String packageName):
     #   Retrieves information about how a package was installed or updated.
     #   Извлекает информацию о том, как был установлен или обновлен пакет.
+    #   This method added in API level 30.
+    #   Этот метод введен в API level 30.
     #   https://developer.android.com/reference/android/content/pm/PackageManager#getInstallSourceInfo(java.lang.String)
     #
     # getInstallingPackageName():
@@ -108,6 +112,8 @@ class API:
     #    (the installer of record), or null if not available.
     #   Имя пакета, ответственного за установку (установщик пакета), 
     #    или null, если он недоступен.
+    #   This method added in API level 30.
+    #   Этот метод введен в API level 30.
     #   https://developer.android.com/reference/android/content/pm/InstallSourceInfo#getInstallingPackageName()
     #
     # getPackageName():

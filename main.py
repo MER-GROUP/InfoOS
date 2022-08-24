@@ -4,6 +4,7 @@
 # версия проекта
 __version__ = '1.00'
 # *****************************************************************************************
+# ++++++++++++++++++++++++ РАБОТА С ПРАВАДИ ДОСТУПА ANDROID +++++++++++++++++++++++++++++++
 # глобальная переменная
 # разрешен ли доступ на чтение и запись файлов
 is_access_open = True
@@ -36,30 +37,35 @@ if hasattr(__import__('sys'), 'getandroidapilevel'):
         request_permissions(perms)
     # ----------------------------------------------------------------------
 # *****************************************************************************************
+# ++++++++++++++++++++++++++++++ РАБОТА С ФАЙЛОВОЙ СИСТЕМОЙ +++++++++++++++++++++++++++++++
 # собственные модули
 # Работа с директориями и файлами ОС
 from merlib.fs.File import File
 pre_file = File()
-directory = pre_file.file_get_path_to_downloads()
+directory_downloads = pre_file.file_get_path_to_downloads()
 # *****************************************************************************************
-# работа с логированием
-import logging
-# настройка логирования
-logging.basicConfig(
-    # level=logging.INFO,
-    # level=logging.ERROR,
-    level=logging.DEBUG,
-    format="%(asctime)s [%(levelname)s] %(message)s",
-    filename = directory + 'debug.log' \
-                if hasattr(__import__('sys'), 'getandroidapilevel') \
-                else './debug.log', 
-    filemode = 'w'
-    # handlers=[
-    #     logging.FileHandler("/storage/emulated/0/Download/debug.log"), # for Android
-    #     logging.FileHandler("debug.log"), # for other OS
-    #     logging.StreamHandler()
-    # ]
-)
+# ++++++++++++++++++++++++++++++ РАБОТА С ЛОГИРОВАНИЕМ ++++++++++++++++++++++++++++++++++++
+# включить/отключить логирование
+if True:
+    # работа с логированием
+    import logging
+    # настройка логирования
+    logging.basicConfig(
+        level=logging.INFO,
+        # level=logging.WARNING,
+        # level=logging.ERROR,
+        # level=logging.DEBUG,
+        format="%(asctime)s [%(levelname)s] %(message)s",
+        filename = directory_downloads + 'debug.log' \
+                    if hasattr(__import__('sys'), 'getandroidapilevel') \
+                    else './debug.log', 
+        filemode = 'w'
+        # handlers=[
+        #     logging.FileHandler("/storage/emulated/0/Download/debug.log"), # for Android
+        #     logging.FileHandler("debug.log"), # for other OS
+        #     logging.StreamHandler()
+        # ]
+    )
 # *****************************************************************************************
 # главное окно программы
 from kivy.app import App
