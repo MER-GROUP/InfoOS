@@ -7,12 +7,23 @@ if 'android' == platform:
     # ---------------------------------------------------------------------------
     # autoclass - импорт java классов
     # JavaException - работа с исключениями java классов
-    from jnius import autoclass, JavaException
+    from jnius import autoclass, cast, JavaException
+    # ---------------------------------------------------------------------------
+    #
+    #
+    #
+    PythonActivity = autoclass('org.kivy.android.PythonActivity')
+    # ---------------------------------------------------------------------------
+    #
+    #
+    #
+    Activity = cast('android.app.Activity', PythonActivity.mActivity) 
     # ---------------------------------------------------------------------------
     # информация о приложении (программе)
     # (public abstract class Context extends Object)
     # https://developer.android.com/reference/android/content/Context
-    Context = autoclass('android.content.Context')
+    # Context = autoclass('android.content.Context')
+    Context = cast('android.content.Context', Activity.getApplicationContext())
     # ---------------------------------------------------------------------------
     # дополнительная информация о приложении (программе)
     # (public abstract class PackageManager extends Object)
@@ -73,7 +84,7 @@ class API:
         if 'android' == platform:
             try:
                 return str(
-                    Context.getPackageName().toString()
+                    Context.getPackageName()
                     )
             except JavaException as e:
                 return 'EXCEPT JAVA: ' + str(e)
