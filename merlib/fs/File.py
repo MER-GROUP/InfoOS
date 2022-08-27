@@ -43,7 +43,7 @@ from os import remove, listdir, chmod, mkdir, rmdir
 # stat.S_ENFMT - права доступа -----S--- (весь доступ запрещен)
 import stat
 # импортируем молуль pathlib
-# Path - задает путь к файлу
+# Path - задает путь к файлу и делает правильный формат пути для ОС
 # Path.unlink - отмена связи или удаление файла по указанному пути
 from pathlib import Path
 # импортируем молуль locale - Сервисы интернационализации
@@ -54,31 +54,31 @@ class File:
     '''
     class File - класс для обработки файлов
     методы:
-        file_console_print_file_utf8(file: str, curdir: str = __file__) -> None     ##########+
-        file_console_print_list(arr: list) -> None                                  ##########+
-        file_create(file: str, curdir: str = __file__) -> bool                      ##########+
-        file_create_dir(dir: str, curdir: str = __file__) -> bool                   ##########+
-        file_delete(file: str, curdir: str = __file__) -> bool                      ##########+
-        file_delete_empty_folder(dir: str, curdir: str = __file__) -> bool          ##########+
-        file_delete_full_folder(dir: str, curdir: str = __file__) -> bool           ##########+
-        file_exists(file: str, curdir: str = __file__) -> bool                      ##########+
-        file_exists_dir(dir: str, curdir: str = __file__) -> bool                   ##########+
-        file_init_dir(folder: str, dir: str, curdir: str = __file__) -> str         ##########+
-        file_init_name(folder: str, filename: str, curdir: str = __file__) -> str   ##########+
-        file_get_current_dir_files() -> list[str]                                   ##########+
-        file_get_dir_files(dir: str, curdir: str = __file__) -> list[str]           ##########+
-        file_get_current_access_dir_in_str() -> list[str]                           ##########+
-        file_get_current_access_dir_in_int() -> list[int]                           ##########+
-        file_get_installer() -> str                                                 ##########+
-        file_get_path_to_downloads() -> str                                         ##########+
-        file_get_local_language() -> str                                            ##########+
-        file_set_access_open_all(name: str, curdir: str = __file__) -> bool         ##########+
-        file_set_access_close_all(name: str, curdir: str = __file__) -> bool        ##########+
-        file_read(file: str, curdir: str = __file__) -> list[str]                   ##########+ 
-        file_read_utf8(file: str, curdir: str = __file__) -> list[str]              ##########+ 
-        file_write(file: str, arr: list, curdir: str = __file__) -> None            ##########+  
-        file_write_append(file: str, arr: list, curdir: str = __file__) -> None     ##########+ 
-        file_write_dict(file: str, dictor: dict, curdir: str = __file__) -> None    ##########+           
+        file_console_print_file_utf8(file: str, curdir: str = __file__) -> None     
+        file_console_print_list(arr: list) -> None                                  
+        file_create(file: str, curdir: str = __file__) -> bool                      
+        file_create_dir(dir: str, curdir: str = __file__) -> bool                   
+        file_delete(file: str, curdir: str = __file__) -> bool                      
+        file_delete_empty_folder(dir: str, curdir: str = __file__) -> bool          
+        file_delete_full_folder(dir: str, curdir: str = __file__) -> bool           
+        file_exists(file: str, curdir: str = __file__) -> bool                      
+        file_exists_dir(dir: str, curdir: str = __file__) -> bool                   
+        file_init_dir(folder: str, dir: str, curdir: str = __file__) -> str         
+        file_init_name(folder: str, filename: str, curdir: str = __file__) -> str   
+        file_get_current_dir_files() -> list[str]                                   
+        file_get_dir_files(dir: str, curdir: str = __file__) -> list[str]           
+        file_get_current_access_dir_in_str() -> list[str]                           
+        file_get_current_access_dir_in_int() -> list[int]                           
+        file_get_installer() -> str                                                 
+        file_get_path_to_downloads() -> str                                         
+        file_get_local_language() -> str                                            
+        file_set_access_open_all(name: str, curdir: str = __file__) -> bool         
+        file_set_access_close_all(name: str, curdir: str = __file__) -> bool        
+        file_read(file: str, curdir: str = __file__) -> list[str]                   
+        file_read_utf8(file: str, curdir: str = __file__) -> list[str]              
+        file_write(file: str, arr: list, curdir: str = __file__) -> None            
+        file_write_append(file: str, arr: list, curdir: str = __file__) -> None     
+        file_write_dict(file: str, dictor: dict, curdir: str = __file__) -> None              
     '''
     # ---------------------------------------------------------------------------
     # вывод в консоль содержимого файла содержащий текст в utf-8 кодировке 
@@ -142,9 +142,10 @@ class File:
                     __file__ - путь данного файла в текущей директории (magic method)\n  
         примеры:\n 
                 file = File()\n 
-                file.file_create('./temp/test1.txt', __file__) # True\n 
-                file.file_create('./temp/test2.txt', __file__) # True\n 
-                file.file_create('./temp/max/test2.txt', __file__) # False\n                     
+                file.file_create('./test.txt', __file__)\n 
+                file.file_create('./temp/test1.txt', __file__)\n 
+                file.file_create('./temp/test2.txt', __file__)\n 
+                file.file_create('./temp/max/test2.txt', __file__)\n                     
         '''
         try:
             # инициализировать полное имя файла не нужно
@@ -567,10 +568,13 @@ class File:
             # if android
             if hasattr(sys, 'getandroidapilevel'):
                 # получить установщик данного файла
-                from jnius import autoclass, JavaException
+                from jnius import autoclass, cast, JavaException
                 try:
-                    Context = autoclass('android.content.Context')
+                    PythonActivity = autoclass('org.kivy.android.PythonActivity')
+                    Activity = cast('android.app.Activity', PythonActivity.mActivity)
+                    Context = cast('android.content.Context', Activity.getApplicationContext())
                     # получить установщик данного файла
+                    # на Android <= 29 SDK API
                     return str(
                         Context.getPackageManager().getInstallerPackageName(
                             str(Context.getPackageName())
