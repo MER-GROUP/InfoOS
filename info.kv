@@ -61,7 +61,8 @@
                 text: translate().get_translate(file().file_get_local_language(), 'info')
                 # on_press: app.change_text(info_label, translate().get_translate(file().file_get_local_language(), 'about'))
                 on_press: app.api_str = translate().get_translate(file().file_get_local_language(), 'about')
-                on_press: app.change_text(btn, translate().get_translate(file().file_get_local_language(), 'menu'))
+                # on_press: app.change_text(btn, translate().get_translate(file().file_get_local_language(), 'menu'))
+                on_press: app.menu_str = translate().get_translate(file().file_get_local_language(), 'menu')
     # ---------------------------------------------------------------------------
 
 # выпадающее меню
@@ -74,6 +75,7 @@
         size_hint_y: None
         height: '48dp'
         on_release: root.select(translate().get_translate(file().file_get_local_language(), 'sdk'))
+        # on_release: app.menu_str = translate().get_translate(file().file_get_local_language(), 'sdk')
         # on_release: app.change_text(info_label, api().sdk_show())
         on_release: app.api_str = api().sdk_show()
     # Имя пакета этого приложения
@@ -82,6 +84,7 @@
         size_hint_y: None
         height: '48dp'
         on_release: root.select(translate().get_translate(file().file_get_local_language(), 'name_pkg'))
+        # on_release: app.menu_str = translate().get_translate(file().file_get_local_language(), 'name_pkg')
         # on_release: app.change_text(info_label, api().package_name_show())
         on_release: app.api_str = api().package_name_show()
     # Имя установщика
@@ -90,6 +93,7 @@
         size_hint_y: None
         height: '48dp'
         on_release: root.select(translate().get_translate(file().file_get_local_language(), 'info_install_name'))
+        # on_release: app.menu_str = translate().get_translate(file().file_get_local_language(), 'info_install_name')
         # on_release: app.change_text(info_label, api().package_name_installer_show())
         on_release: app.api_str = api().package_name_installer_show()
     DropDownButton:
