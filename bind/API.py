@@ -11,14 +11,18 @@ if 'android' == platform:
     # api_version - определение версии SDK программного обеспечения
     from android import api_version
     # ---------------------------------------------------------------------------
-    #
-    #
-    #
+    # PythonActivity - ссылка на Java Activity, в которой запущено приложение, 
+    # она хранится в загрузчике Kivy PythonActivity
+    # PythonActivity is provided by the Kivy bootstrap app in python-for-android
     PythonActivity = autoclass('org.kivy.android.PythonActivity')
     # ---------------------------------------------------------------------------
-    #
-    #
-    #
+    # PythonActivity.mActivity - хранит ссылку на текущее выполняемое действие
+    # The PythonActivity.mActivity stores a reference to the currently running activity
+    # We need this to access services
+    # android.app.Activity - взаимоднйствие окна/gui с пользовательским действием
+    # (public class Activity extends ContextThemeWrapper implements LayoutInflater.Factory2, 
+    # Window.Callback, KeyEvent.Callback, View.OnCreateContextMenuListener, ComponentCallbacks2)
+    # https://developer.android.com/reference/android/app/Activity
     Activity = cast('android.app.Activity', PythonActivity.mActivity) 
     # ---------------------------------------------------------------------------
     # информация о приложении (программе)
