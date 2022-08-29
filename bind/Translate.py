@@ -37,20 +37,20 @@ class Translate:
                     '[color=#808080]i@mer-group.ru\n' +
                     'github.com/mer-group[/color]'
         ],
+        'absolute_path': [
+            'Абсолютный путь App',
+            'Absolute app path'
+        ],
         'intro': [
             'Данная программа предназначена для получения информации об аппаратном обеспечении и операционной системе устройства.',
             'This program is designed to obtain information about the hardware and operating system of the device.'
-        ],
-        'absolute_path': [
-            'Абсолютный путь APP',
-            'Absolute app path'
         ],
         'info': [
             'ИНФО',
             'INFO'
         ],
         'info_install_name': [
-            'Имя установщика',
+            'Имя установщика App',
             'Installer name'
         ],
         'close': [
@@ -64,6 +64,10 @@ class Translate:
         'clear': [
             'ОЧИСТИТЬ ИСТОРИЮ',
             'CLEAR HISTORY'
+        ],
+        'full_path': [
+            'Полный путь App',
+            'Full app path'
         ],
         'vibro': [
             'ВИБРАЦИОННЫЙ ОТКЛИК',
