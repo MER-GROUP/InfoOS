@@ -114,6 +114,15 @@
         # on_release: app.menu_str = translate().get_translate(file().file_get_local_language(), 'full_path')
         # on_release: app.change_text(info_label, api().path_full_show())
         on_release: app.api_str = api().path_full_show()
+    # Файлы приложения
+    DropDownButton:
+        text: translate().get_translate(file().file_get_local_language(), 'files_app')
+        size_hint_y: None
+        height: '48dp'
+        on_release: root.select(translate().get_translate(file().file_get_local_language(), 'files_app'))
+        # on_release: app.menu_str = translate().get_translate(file().file_get_local_language(), 'files_app')
+        # on_release: app.change_text(info_label, api().files_app_show())
+        on_release: app.api_str = api().files_app_show()
     # Пример использования DropDown
     # DropDownButton:
     #     text: 'IN LISTS'
