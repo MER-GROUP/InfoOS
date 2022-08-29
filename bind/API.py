@@ -206,6 +206,29 @@ class API:
             # return 'Данный метод не реализован ...'
             return 'This method is not implemented ...'
     # ---------------------------------------------------------------------------
+    # ---------------------------------------------------------------------------
+    # ---------------------------------------------------------------------------
+    # ---------------------------------------------------------------------------
+    # ---------------------------------------------------------------------------
+    # Android:
+    # getPackageCodePath() -> abstract String:
+    #   Return the full path to this context's primary Android package.
+    #   Верните полный путь к этому конкретному основному пакету Android.
+    #   https://developer.android.com/reference/android/content/Context#getPackageCodePath()
+    def path_full_show(self) -> str:
+        if 'android' == platform:
+            try:
+                return str(
+                    Context.getPackageCodePath()
+                    )
+            except JavaException as e:
+                return 'EXCEPT JAVA: ' + str(e)
+            except BaseException as e:
+                return 'EXCEPT PYTHON: ' + str(e)
+        else:
+            # return 'Данный метод не реализован ...'
+            return 'This method is not implemented ...'
+    # ---------------------------------------------------------------------------
     pass
     # ---------------------------------------------------------------------------
 # *****************************************************************************************
