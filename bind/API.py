@@ -26,7 +26,7 @@ if 'android' == platform:
     # https://developer.android.com/reference/android/app/Activity
     Activity = cast('android.app.Activity', PythonActivity.mActivity) 
     # ---------------------------------------------------------------------------
-    # информация о приложении (программе)
+    # Информация о приложении (программе)
     # (public abstract class Context extends Object)
     # https://developer.android.com/reference/android/content/Context
     # Context = autoclass('android.content.Context')
@@ -34,12 +34,12 @@ if 'android' == platform:
     # Activity.getApplicationContext() - returns a reference to the active Context class
     Context = cast('android.content.Context', Activity.getApplicationContext())
     # ---------------------------------------------------------------------------
-    # дополнительная информация о приложении (программе)
+    # Дополнительная информация о приложении (программе)
     # (public abstract class PackageManager extends Object)
     # https://developer.android.com/reference/android/content/pm/PackageManager
     PackageManager = autoclass('android.content.pm.PackageManager')
     # ---------------------------------------------------------------------------
-    # информация о том, как было установлено приложение
+    # Информация о том, как было установлено приложение
     # (public final class InstallSourceInfo extends Object implements Parcelable)
     # https://developer.android.com/reference/android/content/pm/InstallSourceInfo
     # This class added in API level 30.
@@ -52,15 +52,20 @@ if 'android' == platform:
     # https://developer.android.com/reference/android/content/pm/ApplicationInfo
     ApplicationInfo = autoclass('android.content.pm.ApplicationInfo')
     # ---------------------------------------------------------------------------
-    # информация об ОС Android
+    # Информация об ОС Android
     # (public static class Build.VERSION extends Object)
     # https://developer.android.com/reference/android/os/Build.VERSION
     VERSION = autoclass('android.os.Build$VERSION')
     # ---------------------------------------------------------------------------
-    # работа с локализацией ОС Android
+    # Работа с локализацией ОС Android
     # (public final class Locale extends Object implements Cloneable, Serializable)
     # https://developer.android.com/reference/java/util/Locale
     Locale = autoclass('java.util.Locale')
+    # ---------------------------------------------------------------------------
+    # Абстрактное представление путей к файлам и каталогам
+    # (public class File extends Object implements Serializable, Comparable<File>)
+    # https://developer.android.com/reference/java/io/File
+    File = autoclass('java.io.File')
     # ---------------------------------------------------------------------------
     # plyer - работа с железом устройства
     # vibrator - управление вибрацией устройства
@@ -166,6 +171,37 @@ class API:
                                 Context.getPackageName()
                             )
                         ).getInstallingPackageName()
+                    )
+            except JavaException as e:
+                return 'EXCEPT JAVA: ' + str(e)
+            except BaseException as e:
+                return 'EXCEPT PYTHON: ' + str(e)
+        else:
+            # return 'Данный метод не реализован ...'
+            return 'This method is not implemented ...'
+    # ---------------------------------------------------------------------------
+    # ---------------------------------------------------------------------------
+    # ---------------------------------------------------------------------------
+    # ---------------------------------------------------------------------------
+    # ---------------------------------------------------------------------------
+    # ---------------------------------------------------------------------------
+    # Android:
+    # getDataDir() -> abstract File:
+    #   Returns the absolute path to the directory on the filesystem 
+    #   where all private files belonging to this app are stored.
+    #   Возвращает абсолютный путь к каталогу в файловой системе, 
+    #   где хранятся все личные файлы, принадлежащие этому приложению.
+    #   https://developer.android.com/reference/android/content/Context#getDataDir()
+    #
+    # getAbsolutePath() -> Syring:
+    #   Returns the absolute path of this file.
+    #   Возвращает абсолютный путь к этому файлу.
+    #   https://developer.android.com/reference/java/io/File#getAbsolutePath()
+    def path_absolute_show(self) -> str:
+        if 'android' == platform:
+            try:
+                return str(
+                    Context.getDataDir().getAbsolutePath()
                     )
             except JavaException as e:
                 return 'EXCEPT JAVA: ' + str(e)
