@@ -84,9 +84,9 @@ class API:
                     'api_version: ' + str(api_version)
                     )
             except JavaException as e:
-                return str(e)
+                return 'EXCEPT JAVA: ' + str(e)
             except BaseException as e:
-                return str(e)
+                return 'EXCEPT PYTHON: ' + str(e)
         else:
             # return 'Данный метод не реализован ...'
             return 'This method is not implemented ...'
@@ -168,9 +168,9 @@ class API:
                         ).getInstallingPackageName()
                     )
             except JavaException as e:
-                return str(e)
+                return 'EXCEPT JAVA: ' + str(e)
             except BaseException as e:
-                return str(e)
+                return 'EXCEPT PYTHON: ' + str(e)
         else:
             # return 'Данный метод не реализован ...'
             return 'This method is not implemented ...'
