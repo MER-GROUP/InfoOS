@@ -188,7 +188,7 @@ class API:
     #   где хранятся все личные файлы, принадлежащие этому приложению.
     #   https://developer.android.com/reference/android/content/Context#getDataDir()
     #
-    # getAbsolutePath() -> Syring:
+    # getAbsolutePath() -> String:
     #   Returns the absolute path of this file.
     #   Возвращает абсолютный путь к этому файлу.
     #   https://developer.android.com/reference/java/io/File#getAbsolutePath()
@@ -218,6 +218,32 @@ class API:
             try:
                 return str(
                     Context.getPackageCodePath()
+                    )
+            except JavaException as e:
+                return 'EXCEPT JAVA: ' + str(e)
+            except BaseException as e:
+                return 'EXCEPT PYTHON: ' + str(e)
+        else:
+            # return 'Данный метод не реализован ...'
+            return 'This method is not implemented ...'
+    # ---------------------------------------------------------------------------
+    # Android:
+    # getFilesDir() -> abstract File:
+    #   Returns the absolute path to the directory on the filesystem where files 
+    #   created with openFileOutput(String, int) are stored.
+    #   Возвращает абсолютный путь к каталогу в файловой системе, 
+    #   в котором хранятся файлы, созданные с помощью openFileOutput(String, int).
+    #   https://developer.android.com/reference/android/content/Context#getFilesDir()
+    #
+    # getAbsolutePath() -> String:
+    #   Returns the absolute path of this file.
+    #   Возвращает абсолютный путь к этому файлу.
+    #   https://developer.android.com/reference/java/io/File#getAbsolutePath()
+    def path_files_app_show(self) -> str:
+        if 'android' == platform:
+            try:
+                return str(
+                    Context.getFilesDir().getAbsolutePath()
                     )
             except JavaException as e:
                 return 'EXCEPT JAVA: ' + str(e)

@@ -69,6 +69,10 @@ class Translate:
             'Полный путь App',
             'Full app path'
         ],
+        'files_path_app': [
+            'Путь к файлам App',
+            'Path app files'
+        ],
         'files_app': [
             'Файлы App',
             'Files app'
