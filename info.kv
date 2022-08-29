@@ -96,9 +96,19 @@
         # on_release: app.menu_str = translate().get_translate(file().file_get_local_language(), 'info_install_name')
         # on_release: app.change_text(info_label, api().package_name_installer_show())
         on_release: app.api_str = api().package_name_installer_show()
+    # Абсолютный путь к каталогу
     DropDownButton:
-        text: 'IN LISTS'
+        text: translate().get_translate(file().file_get_local_language(), 'absolute_path')
         size_hint_y: None
         height: '48dp'
-        on_release: root.select('IN MENU')
+        on_release: root.select(translate().get_translate(file().file_get_local_language(), 'absolute_path'))
+        # on_release: app.menu_str = translate().get_translate(file().file_get_local_language(), 'absolute_path')
+        # on_release: app.change_text(info_label, api().path_absolute_show())
+        on_release: app.api_str = api().path_absolute_show()
+    # Пример использования DropDown
+    # DropDownButton:
+    #     text: 'IN LISTS'
+    #     size_hint_y: None
+    #     height: '48dp'
+    #     on_release: root.select('IN MENU')
     # ---------------------------------------------------------------------------

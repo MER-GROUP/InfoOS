@@ -76,7 +76,7 @@ if 'android' == platform:
 class API:
     # ---------------------------------------------------------------------------
     # Android:
-    # SDK_INT:
+    # SDK_INT -> static final int:
     #   The SDK version of the software currently running on this hardware device.
     #   Версия SDK программного обеспечения, запущенного в настоящее время 
     #    на этом аппаратном устройстве.
@@ -97,7 +97,7 @@ class API:
             return 'This method is not implemented ...'
     # ---------------------------------------------------------------------------
     # Android:
-    # getPackageName():
+    # getPackageName() -> abstract String:
     #   Return the name of this application's package.
     #   Возвращает имя пакета этого приложения.
     #   https://developer.android.com/reference/android/content/Context#getPackageName()
@@ -116,12 +116,12 @@ class API:
             return 'This method is not implemented ...'
     # ---------------------------------------------------------------------------
     # Android:
-    # getPackageManager():
+    # getPackageManager() -> abstract PackageManager:
     #   Return PackageManager instance to find global package information.
     #   Возвращает объект PackageManager, чтобы найти глобальную информацию о пакете.
     #   https://developer.android.com/reference/android/content/Context#getPackageManager()
     #
-    # getInstallerPackageName(String packageName):
+    # getInstallerPackageName(String packageName) -> abstract String:
     #   Retrieve the package name of the application that installed a package. 
     #   This identifies which market the package came from.
     #   Показывает установщик данного приложения.
@@ -132,14 +132,14 @@ class API:
     #   Use - getInstallSourceInfo(String packageName) if API 30 and higher.
     #   Используйте - getInstallSourceInfo(String packageName) если API 30 и выше.
     #
-    # getInstallSourceInfo(String packageName):
+    # getInstallSourceInfo(String packageName) -> InstallSourceInfo:
     #   Retrieves information about how a package was installed or updated.
     #   Извлекает информацию о том, как был установлен или обновлен пакет.
     #   This method added in API level 30.
     #   Этот метод введен в API level 30.
     #   https://developer.android.com/reference/android/content/pm/PackageManager#getInstallSourceInfo(java.lang.String)
     #
-    # getInstallingPackageName():
+    # getInstallingPackageName() -> String:
     #   The name of the package responsible for the installation 
     #    (the installer of record), or null if not available.
     #   Имя пакета, ответственного за установку (установщик пакета), 
@@ -148,7 +148,7 @@ class API:
     #   Этот метод введен в API level 30.
     #   https://developer.android.com/reference/android/content/pm/InstallSourceInfo#getInstallingPackageName()
     #
-    # getPackageName():
+    # getPackageName() -> abstract String:
     #   Return the name of this application's package.
     #   Возвращает имя пакета этого приложения.
     #   https://developer.android.com/reference/android/content/Context#getPackageName()
@@ -179,11 +179,6 @@ class API:
         else:
             # return 'Данный метод не реализован ...'
             return 'This method is not implemented ...'
-    # ---------------------------------------------------------------------------
-    # ---------------------------------------------------------------------------
-    # ---------------------------------------------------------------------------
-    # ---------------------------------------------------------------------------
-    # ---------------------------------------------------------------------------
     # ---------------------------------------------------------------------------
     # Android:
     # getDataDir() -> abstract File:

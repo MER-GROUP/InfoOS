@@ -41,6 +41,10 @@ class Translate:
             'Данная программа предназначена для получения информации об аппаратном обеспечении и операционной системе устройства.',
             'This program is designed to obtain information about the hardware and operating system of the device.'
         ],
+        'absolute_path': [
+            'Абсолютный путь APP',
+            'Absolute app path'
+        ],
         'info': [
             'ИНФО',
             'INFO'
@@ -78,7 +82,7 @@ class Translate:
             'MENU'
         ],
         'name_pkg': [
-            'Имя пакета приложения',
+            'Имя пакета APP',
             'App package name'
         ],
         'settings': [
