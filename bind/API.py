@@ -227,6 +227,27 @@ class API:
             # return 'Данный метод не реализован ...'
             return 'This method is not implemented ...'
     # ---------------------------------------------------------------------------
+    # Android:
+    # fileList() -> abstract String[]:
+    #   Returns an array of strings naming the private files associated 
+    #   with this Context's application package.
+    #   Возвращает массив строк, именующих личные файлы, 
+    #   связанные с этим пакетом приложений Contexts.
+    #   https://developer.android.com/reference/android/content/Context#fileList()
+    def files_app_show(self) -> str:
+        if 'android' == platform:
+            try:
+                return str(
+                    '\n'.join(Context.fileList())
+                    )
+            except JavaException as e:
+                return 'EXCEPT JAVA: ' + str(e)
+            except BaseException as e:
+                return 'EXCEPT PYTHON: ' + str(e)
+        else:
+            # return 'Данный метод не реализован ...'
+            return 'This method is not implemented ...'
+    # ---------------------------------------------------------------------------
     pass
     # ---------------------------------------------------------------------------
 # *****************************************************************************************

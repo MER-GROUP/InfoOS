@@ -69,6 +69,10 @@ class Translate:
             'Полный путь App',
             'Full app path'
         ],
+        'files_app': [
+            'Файлы App',
+            'Files app'
+        ],
         'vibro': [
             'ВИБРАЦИОННЫЙ ОТКЛИК',
             'VIBRATION RESPONSE'
