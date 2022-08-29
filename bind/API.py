@@ -17,6 +17,7 @@ if 'android' == platform:
     PythonActivity = autoclass('org.kivy.android.PythonActivity')
     # ---------------------------------------------------------------------------
     # PythonActivity.mActivity - хранит ссылку на текущее выполняемое действие
+    # Нам это нужно для доступа к службам
     # The PythonActivity.mActivity stores a reference to the currently running activity
     # We need this to access services
     # android.app.Activity - взаимоднйствие окна/gui с пользовательским действием
