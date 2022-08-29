@@ -94,7 +94,7 @@ class Translate:
             'MENU'
         ],
         'name_pkg': [
-            'Имя пакета APP',
+            'Имя пакета App',
             'App package name'
         ],
         'settings': [
