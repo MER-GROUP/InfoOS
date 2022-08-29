@@ -8,6 +8,8 @@ if 'android' == platform:
     # autoclass - импорт java классов
     # JavaException - работа с исключениями java классов
     from jnius import autoclass, cast, JavaException
+    # api_version - определение версии SDK программного обеспечения
+    from android import api_version
     # ---------------------------------------------------------------------------
     #
     #
@@ -35,7 +37,8 @@ if 'android' == platform:
     # https://developer.android.com/reference/android/content/pm/InstallSourceInfo
     # This class added in API level 30.
     # Этот класс введен в API level 30.
-    # InstallSourceInfo = autoclass('android.content.pm.InstallSourceInfo')
+    if 30 <= api_version: 
+        InstallSourceInfo = autoclass('android.content.pm.InstallSourceInfo')
     # ---------------------------------------------------------------------------
     #
     #
@@ -134,7 +137,8 @@ class API:
     def package_name_installer_show(self) -> str:
         if 'android' == platform:
             try:
-                if (30 > int(self.sdk_show())):
+                # if (30 > int(self.sdk_show())):
+                if (30 > api_version):
                     return str(
                         Context.getPackageManager().getInstallerPackageName(
                             str(
