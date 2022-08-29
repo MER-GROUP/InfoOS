@@ -29,6 +29,8 @@ if 'android' == platform:
     # (public abstract class Context extends Object)
     # https://developer.android.com/reference/android/content/Context
     # Context = autoclass('android.content.Context')
+    # Activity.getApplicationContext() - возвращает ссылку на актиыный класс Context
+    # Activity.getApplicationContext() - returns a reference to the active Context class
     Context = cast('android.content.Context', Activity.getApplicationContext())
     # ---------------------------------------------------------------------------
     # дополнительная информация о приложении (программе)
@@ -44,9 +46,9 @@ if 'android' == platform:
     if 30 <= api_version: 
         InstallSourceInfo = autoclass('android.content.pm.InstallSourceInfo')
     # ---------------------------------------------------------------------------
-    #
-    #
-    #
+    # Информация о конкретном приложении (программе)
+    # (public class ApplicationInfo extends PackageItemInfo implements Parcelable)
+    # https://developer.android.com/reference/android/content/pm/ApplicationInfo
     ApplicationInfo = autoclass('android.content.pm.ApplicationInfo')
     # ---------------------------------------------------------------------------
     # информация об ОС Android
