@@ -68,7 +68,8 @@ class API:
         if 'android' == platform:
             try:
                 return str(
-                    VERSION.SDK_INT
+                    'VERSION.SDK_INT: ' + str(VERSION.SDK_INT) + '\n' +
+                    'api_version: ' + str(api_version)
                     )
             except JavaException as e:
                 return str(e)
