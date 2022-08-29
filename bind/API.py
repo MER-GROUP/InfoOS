@@ -215,6 +215,8 @@ class API:
     #   Return the full path to this context's primary Android package.
     #   Верните полный путь к этому конкретному основному пакету Android.
     #   https://developer.android.com/reference/android/content/Context#getPackageCodePath()
+    #   По этому пути хранится копия приложения - base.apk
+    #   A copy of the application is stored on this path - base.apk
     def path_full_show(self) -> str:
         if 'android' == platform:
             try:
