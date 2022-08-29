@@ -57,6 +57,11 @@ if 'android' == platform:
     # https://developer.android.com/reference/android/os/Build.VERSION
     VERSION = autoclass('android.os.Build$VERSION')
     # ---------------------------------------------------------------------------
+    # работа с локализацией ОС Android
+    # (public final class Locale extends Object implements Cloneable, Serializable)
+    # https://developer.android.com/reference/java/util/Locale
+    Locale = autoclass('java.util.Locale')
+    # ---------------------------------------------------------------------------
     # plyer - работа с железом устройства
     # vibrator - управление вибрацией устройства
     from plyer import vibrator
