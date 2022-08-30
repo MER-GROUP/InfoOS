@@ -85,6 +85,10 @@ class Translate:
             'ВИБРАЦИОННЫЙ ОТКЛИК',
             'VIBRATION RESPONSE'
         ],
+        'vibrator': [
+            'Вибрация устройства',
+            'Device vibration'
+        ],
         'length': [
             'ДЛИНА ИСТОРИИ',
             'HISTORY LENGTH'
