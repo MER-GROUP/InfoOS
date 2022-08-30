@@ -262,7 +262,7 @@ class API:
     #   gets the path to the internal storage in Android.
     #   получает путь к внутреннему хранилицу в Android.
     #   https:?
-    def path_to_primary_external_storage(self) -> str:
+    def path_to_primary_external_storage_show(self) -> str:
         if 'android' == platform:
             try:
                 return str(
@@ -288,6 +288,33 @@ class API:
             try:
                 return str(
                     '\n'.join(Context.fileList())
+                    )
+            except JavaException as e:
+                return 'EXCEPT JAVA: ' + str(e)
+            except BaseException as e:
+                return 'EXCEPT PYTHON: ' + str(e)
+        else:
+            # return 'Данный метод не реализован ...'
+            return 'This method is not implemented ...'
+    # ---------------------------------------------------------------------------
+    # Android:
+    # getDefault() -> static Locale:
+    #   Gets the current value of the default locale for this instance 
+    #   of the Java Virtual Machine.
+    #   Возвращает текущее значение языкового стандарта по умолчанию 
+    #   для данного экземпляра виртуальной машины Java.
+    #   https://developer.android.com/reference/java/util/Locale#getDefault()
+    #
+    # getDisplayLanguage() -> String:
+    #   Returns a name for the locale's language that is appropriate 
+    #   for display to the user.
+    #   Возвращает имя языка локали, подходящее для отображения пользователю.
+    #   https://developer.android.com/reference/java/util/Locale#getDisplayLanguage()
+    def language_show(self) -> str:
+        if 'android' == platform:
+            try:
+                return str(
+                    Locale.getDefault().getDisplayLanguage()
                     )
             except JavaException as e:
                 return 'EXCEPT JAVA: ' + str(e)
