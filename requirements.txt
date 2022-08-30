@@ -1,0 +1,9 @@
+setuptools
+virtualenv
+pyinstaller
+kivy[base]
+kivy_examples
+plyer
+pyjnius
+cython
+buildozer

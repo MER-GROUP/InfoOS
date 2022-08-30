@@ -8,8 +8,12 @@ if 'android' == platform:
     # autoclass - импорт java классов
     # JavaException - работа с исключениями java классов
     from jnius import autoclass, cast, JavaException
+    # ---------------------------------------------------------------------------
     # api_version - определение версии SDK программного обеспечения
     from android import api_version
+    # ---------------------------------------------------------------------------
+    # получает путь к внутреннему хранилицу в Android
+    from android.storage import primary_external_storage_path
     # ---------------------------------------------------------------------------
     # PythonActivity - ссылка на Java Activity, в которой запущено приложение, 
     # она хранится в загрузчике Kivy PythonActivity
@@ -69,32 +73,12 @@ if 'android' == platform:
     # ---------------------------------------------------------------------------
     # plyer - работа с железом устройства
     # vibrator - управление вибрацией устройства
+    # https://github.com/kivy/plyer/blob/master/plyer/facades/vibrator.py
     from plyer import vibrator
     # ---------------------------------------------------------------------------
 # *****************************************************************************************
 # API - манипуляции (действия) с API опепационных систем
 class API:
-    # ---------------------------------------------------------------------------
-    # Android:
-    # SDK_INT -> static final int:
-    #   The SDK version of the software currently running on this hardware device.
-    #   Версия SDK программного обеспечения, запущенного в настоящее время 
-    #    на этом аппаратном устройстве.
-    #   https://developer.android.com/reference/android/os/Build.VERSION#SDK_INT
-    def sdk_show(self) -> str:
-        if 'android' == platform:
-            try:
-                return str(
-                    'VERSION.SDK_INT: ' + str(VERSION.SDK_INT) + '\n' +
-                    'api_version: ' + str(api_version)
-                    )
-            except JavaException as e:
-                return 'EXCEPT JAVA: ' + str(e)
-            except BaseException as e:
-                return 'EXCEPT PYTHON: ' + str(e)
-        else:
-            # return 'Данный метод не реализован ...'
-            return 'This method is not implemented ...'
     # ---------------------------------------------------------------------------
     # Android:
     # getPackageName() -> abstract String:
@@ -254,6 +238,25 @@ class API:
             return 'This method is not implemented ...'
     # ---------------------------------------------------------------------------
     # Android:
+    # primary_external_storage_path() -> String:
+    #   gets the path to the internal storage in Android.
+    #   получает путь к внутреннему хранилицу в Android.
+    #   https:?
+    def path_to_primary_external_storage_show(self) -> str:
+        if 'android' == platform:
+            try:
+                return str(
+                    primary_external_storage_path()
+                    )
+            except JavaException as e:
+                return 'EXCEPT JAVA: ' + str(e)
+            except BaseException as e:
+                return 'EXCEPT PYTHON: ' + str(e)
+        else:
+            # return 'Данный метод не реализован ...'
+            return 'This method is not implemented ...'
+    # ---------------------------------------------------------------------------
+    # Android:
     # fileList() -> abstract String[]:
     #   Returns an array of strings naming the private files associated 
     #   with this Context's application package.
@@ -274,6 +277,88 @@ class API:
             # return 'Данный метод не реализован ...'
             return 'This method is not implemented ...'
     # ---------------------------------------------------------------------------
+    # Android:
+    # getDefault() -> static Locale:
+    #   Gets the current value of the default locale for this instance 
+    #   of the Java Virtual Machine.
+    #   Возвращает текущее значение языкового стандарта по умолчанию 
+    #   для данного экземпляра виртуальной машины Java.
+    #   https://developer.android.com/reference/java/util/Locale#getDefault()
+    #
+    # getDisplayLanguage() -> String:
+    #   Returns a name for the locale's language that is appropriate 
+    #   for display to the user.
+    #   Возвращает имя языка локали, подходящее для отображения пользователю.
+    #   https://developer.android.com/reference/java/util/Locale#getDisplayLanguage()
+    def language_show(self) -> str:
+        if 'android' == platform:
+            try:
+                return str(
+                    Locale.getDefault().getDisplayLanguage()
+                    )
+            except JavaException as e:
+                return 'EXCEPT JAVA: ' + str(e)
+            except BaseException as e:
+                return 'EXCEPT PYTHON: ' + str(e)
+        else:
+            # return 'Данный метод не реализован ...'
+            return 'This method is not implemented ...'
+    # ---------------------------------------------------------------------------
+    # Android:
+    # SDK_INT -> static final int:
+    #   The SDK version of the software currently running on this hardware device.
+    #   Версия SDK программного обеспечения, запущенного в настоящее время 
+    #    на этом аппаратном устройстве.
+    #   https://developer.android.com/reference/android/os/Build.VERSION#SDK_INT
+    def sdk_show(self) -> str:
+        if 'android' == platform:
+            try:
+                return str(
+                    'VERSION.SDK_INT: ' + str(VERSION.SDK_INT) + '\n' +
+                    'api_version: ' + str(api_version)
+                    )
+            except JavaException as e:
+                return 'EXCEPT JAVA: ' + str(e)
+            except BaseException as e:
+                return 'EXCEPT PYTHON: ' + str(e)
+        else:
+            # return 'Данный метод не реализован ...'
+            return 'This method is not implemented ...'
+    # ---------------------------------------------------------------------------
+    # Android:
+    # vibrator.vibrate(n) -> None:
+    #   Ask the vibrator to vibrate for the given period.
+    #   :param time: Time to vibrate for, in seconds. Default is '0.5'.
+    #   Попросите вибратор вибрировать в течение заданного периода времени.
+    #   :param time: Время для вибрации в секундах. Значение по умолчанию равно '0.5'.
+    #   https://github.com/kivy/plyer/blob/master/plyer/facades/vibrator.py
+    #
+    # vibrator.exists() -> None:
+    #   Check if the device has a vibrator. Returns True or False.
+    #   Проверьте, есть ли в устройстве вибратор. Возвращает значение True или False.
+    #   https://github.com/kivy/plyer/blob/master/plyer/facades/vibrator.py
+    def vibrator_run(self, time=0.5) -> bool:
+        '''
+        Ask the vibrator to vibrate for the given period.
+
+        :param time: Time to vibrate for, in seconds. Default is '0.5'.
+        '''
+        if 'android' == platform:
+            try:
+                if vibrator.exists():
+                    vibrator.vibrate(time)
+                    return True
+                else:
+                    return False
+            except JavaException as e:
+                return 'EXCEPT JAVA: ' + str(e)
+            except BaseException as e:
+                return 'EXCEPT PYTHON: ' + str(e)
+        else:
+            # return 'Данный метод не реализован ...'
+            return 'This method is not implemented ...'
+    # ---------------------------------------------------------------------------
+    # Methods
     pass
     # ---------------------------------------------------------------------------
 # *****************************************************************************************
