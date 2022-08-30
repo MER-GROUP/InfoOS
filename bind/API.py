@@ -80,27 +80,6 @@ if 'android' == platform:
 class API:
     # ---------------------------------------------------------------------------
     # Android:
-    # SDK_INT -> static final int:
-    #   The SDK version of the software currently running on this hardware device.
-    #   Версия SDK программного обеспечения, запущенного в настоящее время 
-    #    на этом аппаратном устройстве.
-    #   https://developer.android.com/reference/android/os/Build.VERSION#SDK_INT
-    def sdk_show(self) -> str:
-        if 'android' == platform:
-            try:
-                return str(
-                    'VERSION.SDK_INT: ' + str(VERSION.SDK_INT) + '\n' +
-                    'api_version: ' + str(api_version)
-                    )
-            except JavaException as e:
-                return 'EXCEPT JAVA: ' + str(e)
-            except BaseException as e:
-                return 'EXCEPT PYTHON: ' + str(e)
-        else:
-            # return 'Данный метод не реализован ...'
-            return 'This method is not implemented ...'
-    # ---------------------------------------------------------------------------
-    # Android:
     # getPackageName() -> abstract String:
     #   Return the name of this application's package.
     #   Возвращает имя пакета этого приложения.
@@ -324,6 +303,28 @@ class API:
             # return 'Данный метод не реализован ...'
             return 'This method is not implemented ...'
     # ---------------------------------------------------------------------------
+    # Android:
+    # SDK_INT -> static final int:
+    #   The SDK version of the software currently running on this hardware device.
+    #   Версия SDK программного обеспечения, запущенного в настоящее время 
+    #    на этом аппаратном устройстве.
+    #   https://developer.android.com/reference/android/os/Build.VERSION#SDK_INT
+    def sdk_show(self) -> str:
+        if 'android' == platform:
+            try:
+                return str(
+                    'VERSION.SDK_INT: ' + str(VERSION.SDK_INT) + '\n' +
+                    'api_version: ' + str(api_version)
+                    )
+            except JavaException as e:
+                return 'EXCEPT JAVA: ' + str(e)
+            except BaseException as e:
+                return 'EXCEPT PYTHON: ' + str(e)
+        else:
+            # return 'Данный метод не реализован ...'
+            return 'This method is not implemented ...'
+    # ---------------------------------------------------------------------------
+    # Methods
     pass
     # ---------------------------------------------------------------------------
 # *****************************************************************************************
