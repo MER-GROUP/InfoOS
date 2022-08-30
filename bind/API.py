@@ -8,8 +8,12 @@ if 'android' == platform:
     # autoclass - импорт java классов
     # JavaException - работа с исключениями java классов
     from jnius import autoclass, cast, JavaException
+    # ---------------------------------------------------------------------------
     # api_version - определение версии SDK программного обеспечения
     from android import api_version
+    # ---------------------------------------------------------------------------
+    # получает путь к внутреннему хранилицу в Android
+    from android.storage import primary_external_storage_path
     # ---------------------------------------------------------------------------
     # PythonActivity - ссылка на Java Activity, в которой запущено приложение, 
     # она хранится в загрузчике Kivy PythonActivity
@@ -244,6 +248,25 @@ class API:
             try:
                 return str(
                     Context.getFilesDir().getAbsolutePath()
+                    )
+            except JavaException as e:
+                return 'EXCEPT JAVA: ' + str(e)
+            except BaseException as e:
+                return 'EXCEPT PYTHON: ' + str(e)
+        else:
+            # return 'Данный метод не реализован ...'
+            return 'This method is not implemented ...'
+    # ---------------------------------------------------------------------------
+    # Android:
+    # primary_external_storage_path() -> String:
+    #   gets the path to the internal storage in Android.
+    #   получает путь к внутреннему хранилицу в Android.
+    #   https:?
+    def path_to_primary_external_storage(self) -> str:
+        if 'android' == platform:
+            try:
+                return str(
+                    primary_external_storage_path()
                     )
             except JavaException as e:
                 return 'EXCEPT JAVA: ' + str(e)
