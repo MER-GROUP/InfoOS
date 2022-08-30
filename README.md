@@ -37,8 +37,8 @@
   <h1 align="center"><b>Kivi Calc</b></h1>
 
   <p align="center">
-        <h2><b>KivyCalc is a simple cross-platform calculator</b><br />
-            <i>[KivyCalc - это простой кроссплатформенный калькулятор]</i></h2>
+        <h2><b>InfoOS is a simple cross-platform calculator</b><br />
+            <i>[InfoOS - это простой кроссплатформенный калькулятор]</i></h2>
         <h3><b>Screenshots of the program in Linux, MacOS, Windows</b><br />
             <i>[Cкриншоты программы в Linux, MacOS, Windows]</i></h3>
         <table border="0">
@@ -71,11 +71,11 @@
                 <td><img src="screenshot/android_rus/4 - история.png"></td>
             </tr>
         </table>
-        <a href="https://github.com/MER-GROUP/KivyCalc">View [Просмотр]</a>
+        <a href="https://github.com/MER-GROUP/InfoOS">View [Просмотр]</a>
         ·
-        <a href="https://github.com/MER-GROUP/KivyCalc/issues">Report Bug [Сообщить об ошибке]</a>
+        <a href="https://github.com/MER-GROUP/InfoOS/issues">Report Bug [Сообщить об ошибке]</a>
         ·
-        <a href="https://github.com/MER-GROUP/KivyCalc/issues">Request Feature [Внести изменение]</a>
+        <a href="https://github.com/MER-GROUP/InfoOS/issues">Request Feature [Внести изменение]</a>
   </p>
 </div>
 <!-- ------------------------------------------------------------------------------------------->
@@ -112,15 +112,15 @@
 <!-- 
 [![Product Name Screen Shot][product-screenshot]](https://example.com) 
 -->
-**KivyCalc is a simple cross-platform calculator. The principle of operation is taken from the simplest calculator, that is, calculations are performed sequentially, the priority of mathematical
+**InfoOS is a simple cross-platform calculator. The principle of operation is taken from the simplest calculator, that is, calculations are performed sequentially, the priority of mathematical
 operators is not taken into account.**
 
-[*KivyCalc - это простой кроссплатформенный калькулятор. Принцип работы взят из самого простого калькулятора, тоесть вычисления выполняются последовательно, приоритет математических 
+[*InfoOS - это простой кроссплатформенный калькулятор. Принцип работы взят из самого простого калькулятора, тоесть вычисления выполняются последовательно, приоритет математических 
 операторов не учитывается.*]
 
-**For example, the mathematical expression KivyCalc will calculate as:**
+**For example, the mathematical expression InfoOS will calculate as:**
 
-[*Например математическое выражение KivyCalc посчитает как:*]
+[*Например математическое выражение InfoOS посчитает как:*]
 
 > 5 + 5 * 5 = 50
 
@@ -136,17 +136,17 @@ of mathematical operators.**
 [*Сделалось это специально, так как большинство людей не учитывают приоритет 
 математических операторов.*]
 
-**KivyCalc settings allow you to:**
+**InfoOS settings allow you to:**
 
-[*Настройки KivyCalc позволяют:*]
+[*Настройки InfoOS позволяют:*]
 
 1. Set the rule of rounding numbers [*Установить правило окруление чисел*]
 2. Set the length of the story [*Установить длину истории*]
 3. Set the vibration release [*Установить вибрационный отклик*]
 
-**KivyCalc also shows the history of mathematical calculations.**
+**InfoOS also shows the history of mathematical calculations.**
 
-[*Также KivyCalc показывает историю математических вычислений.*]
+[*Также InfoOS показывает историю математических вычислений.*]
 
 <p align="right">(<a href="#top">back to top [вернуться к началу]</a>)</p>
 <!-- ------------------------------------------------------------------------------------------->
@@ -191,11 +191,11 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 1. Clone the repo [*Скопируйте репозиторий*]:
   ```sh
-  git clone https://github.com/MER-GROUP/KivyCalc.git
+  git clone https://github.com/MER-GROUP/InfoOS.git
   ```
 2. Go to the program folder [*Перейдите в папку с программой*]:
   ```sh
-  cd KivyCalc
+  cd InfoOS
   ```
 3. Install the necessary components [*Установите необходимые компоненты*]:
   ```sh
@@ -255,7 +255,7 @@ Don't forget to give the project a star! Thanks again!**
 1. Fork the Project [*Сделайте форк проекта*]
 2. Create your Feature Branch [*Создайте свою ветку*]:
    ```sh
-   git checkout -b feature/KivyCalc
+   git checkout -b feature/InfoOS
    ```
 3. Commit your Changes [*Внесите изменения*]:
    ```sh
@@ -285,7 +285,7 @@ Don't forget to give the project a star! Thanks again!**
 
 Max Ramanenka (Red Alert)  - i@mer-group.ru
 
-Project Link [*Ссылка на проект*]: [https://github.com/MER-GROUP/KivyCalc](https://github.com/MER-GROUP/KivyCalc)
+Project Link [*Ссылка на проект*]: [https://github.com/MER-GROUP/InfoOS](https://github.com/MER-GROUP/InfoOS)
 
 <p align="right">(<a href="#top">back to top [вернуться к началу]</a>)</p>
 <!-- ------------------------------------------------------------------------------------------->
@@ -308,24 +308,24 @@ Project Link [*Ссылка на проект*]: [https://github.com/MER-GROUP/K
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 <!-- contributors -->
-[contributors-shield]: https://img.shields.io/github/contributors/MER-GROUP/KivyCalc.svg?style=for-the-badge
-[contributors-url]: https://github.com/MER-GROUP/KivyCalc/graphs/contributors
+[contributors-shield]: https://img.shields.io/github/contributors/MER-GROUP/InfoOS.svg?style=for-the-badge
+[contributors-url]: https://github.com/MER-GROUP/InfoOS/graphs/contributors
 
 <!-- forks -->
-[forks-shield]: https://img.shields.io/github/forks/MER-GROUP/KivyCalc.svg?style=for-the-badge
-[forks-url]: https://github.com/MER-GROUP/KivyCalc/network/members
+[forks-shield]: https://img.shields.io/github/forks/MER-GROUP/InfoOS.svg?style=for-the-badge
+[forks-url]: https://github.com/MER-GROUP/InfoOS/network/members
 
 <!-- stars -->
-[stars-shield]: https://img.shields.io/github/stars/MER-GROUP/KivyCalc.svg?style=for-the-badge
-[stars-url]: https://github.com/MER-GROUP/KivyCalc/stargazers
+[stars-shield]: https://img.shields.io/github/stars/MER-GROUP/InfoOS.svg?style=for-the-badge
+[stars-url]: https://github.com/MER-GROUP/InfoOS/stargazers
 
 <!-- issues -->
-[issues-shield]: https://img.shields.io/github/issues/MER-GROUP/KivyCalc.svg?style=for-the-badge
-[issues-url]: https://github.com/MER-GROUP/KivyCalc/issues
+[issues-shield]: https://img.shields.io/github/issues/MER-GROUP/InfoOS.svg?style=for-the-badge
+[issues-url]: https://github.com/MER-GROUP/InfoOS/issues
 
 <!-- license -->
-[license-shield]: https://img.shields.io/github/license/MER-GROUP/KivyCalc.svg?style=for-the-badge
-[license-url]: https://github.com/MER-GROUP/KivyCalc/blob/master/LICENSE
+[license-shield]: https://img.shields.io/github/license/MER-GROUP/InfoOS.svg?style=for-the-badge
+[license-url]: https://github.com/MER-GROUP/InfoOS/blob/master/LICENSE
 
 <!-- linkedin -->
 <!--
