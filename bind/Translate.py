@@ -89,6 +89,10 @@ class Translate:
             'ДЛИНА ИСТОРИИ',
             'HISTORY LENGTH'
         ],
+        'language': [
+            'Язык ОС',
+            'OS language'
+        ],
         'round': [
             'ОКРУГЛЕНИЕ ЧИСЕЛ',
             'ROUNDING NUMBERS'
