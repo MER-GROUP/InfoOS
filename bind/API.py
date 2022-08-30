@@ -73,6 +73,7 @@ if 'android' == platform:
     # ---------------------------------------------------------------------------
     # plyer - работа с железом устройства
     # vibrator - управление вибрацией устройства
+    # https://github.com/kivy/plyer/blob/master/plyer/facades/vibrator.py
     from plyer import vibrator
     # ---------------------------------------------------------------------------
 # *****************************************************************************************
@@ -316,6 +317,34 @@ class API:
                     'VERSION.SDK_INT: ' + str(VERSION.SDK_INT) + '\n' +
                     'api_version: ' + str(api_version)
                     )
+            except JavaException as e:
+                return 'EXCEPT JAVA: ' + str(e)
+            except BaseException as e:
+                return 'EXCEPT PYTHON: ' + str(e)
+        else:
+            # return 'Данный метод не реализован ...'
+            return 'This method is not implemented ...'
+    # ---------------------------------------------------------------------------
+    # Android:
+    # vibrator.vibrate(n) -> None:
+    #   Ask the vibrator to vibrate for the given period.
+    #   :param time: Time to vibrate for, in seconds. Default is '0.5'.
+    #   Попросите вибратор вибрировать в течение заданного периода времени.
+    #   :param time: Время для вибрации в секундах. Значение по умолчанию равно '0.5'.
+    #   https://github.com/kivy/plyer/blob/master/plyer/facades/vibrator.py
+    def vibrator_run(self, time=0.5) -> bool:
+        '''
+        Ask the vibrator to vibrate for the given period.
+
+        :param time: Time to vibrate for, in seconds. Default is '0.5'.
+        '''
+        if 'android' == platform:
+            try:
+                if vibrator.hasVibrator():
+                    vibrator.vibrate(time)
+                    return True
+                else:
+                    return False
             except JavaException as e:
                 return 'EXCEPT JAVA: ' + str(e)
             except BaseException as e:
