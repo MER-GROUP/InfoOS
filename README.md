@@ -34,41 +34,25 @@
     <img src="ico/info.png" alt="Logo" width="280" height="280">
   </a>
 
-  <h1 align="center"><b>Kivi Calc</b></h1>
+  <h1 align="center"><b>Info OS</b></h1>
 
   <p align="center">
-        <h2><b>InfoOS is a simple cross-platform calculator</b><br />
-            <i>[InfoOS - это простой кроссплатформенный калькулятор]</i></h2>
-        <h3><b>Screenshots of the program in Linux, MacOS, Windows</b><br />
-            <i>[Cкриншоты программы в Linux, MacOS, Windows]</i></h3>
-        <table border="0">
-            <tr>
-                <td><img src="screenshot/linux-max-windows_eng/1 - calc.png"></td>
-                <td><img src="screenshot/linux-max-windows_eng/2 - settings.png"></td>
-                <td><img src="screenshot/linux-max-windows_eng/3 - info.png"></td>
-                <td><img src="screenshot/linux-max-windows_eng/4 - history.png"></td>
-            </tr>
-            <tr>
-                <td><img src="screenshot/linux-max-windows_rus/1 - калькулятор.png"></td>
-                <td><img src="screenshot/linux-max-windows_rus/2 - настройки.png"></td>
-                <td><img src="screenshot/linux-max-windows_rus/3 - инфо.png"></td>
-                <td><img src="screenshot/linux-max-windows_rus/4 - история.png"></td>
-            </tr>
-        </table>
+        <h2><b>InfoOS is a program that shows system information about the application and the Android OS</b><br />
+            <i>[InfoOS - это программа которая показывает системную информацию о приложении и ОС Android]</i></h2>
         <h3><b>Screenshots of the program in Android</b><br />
             <i>[Cкриншоты программы в Android]</i></h3>
         <table border="0">
             <tr>
-                <td><img src="screenshot/android_eng/1 - cacl.png"></td>
-                <td><img src="screenshot/android_eng/2 - settings.png"></td>
-                <td><img src="screenshot/android_eng/3 - info.png"></td>
-                <td><img src="screenshot/android_eng/4 - history.png"></td>
+                <td><img src="screenshot/android_eng/1 - intro.png"></td>
+                <td><img src="screenshot/android_eng/2 - menu.png"></td>
+                <td><img src="screenshot/android_eng/3 - test.png"></td>
+                <td><img src="screenshot/android_eng/4 - info.png"></td>
             </tr>
             <tr>
-                <td><img src="screenshot/android_rus/1 - калькулятор.png"></td>
-                <td><img src="screenshot/android_rus/2 - настройки.png"></td>
-                <td><img src="screenshot/android_rus/3 - инфо.png"></td>
-                <td><img src="screenshot/android_rus/4 - история.png"></td>
+                <td><img src="screenshot/android_rus/1 - начало.png"></td>
+                <td><img src="screenshot/android_rus/2 - меню.png"></td>
+                <td><img src="screenshot/android_rus/3 - тест.png"></td>
+                <td><img src="screenshot/android_rus/4 - инфо.png"></td>
             </tr>
         </table>
         <a href="https://github.com/MER-GROUP/InfoOS">View [Просмотр]</a>
@@ -112,41 +96,9 @@
 <!-- 
 [![Product Name Screen Shot][product-screenshot]](https://example.com) 
 -->
-**InfoOS is a simple cross-platform calculator. The principle of operation is taken from the simplest calculator, that is, calculations are performed sequentially, the priority of mathematical
-operators is not taken into account.**
+**InfoOS is a program that shows system information about the application and the Android OS.**
 
-[*InfoOS - это простой кроссплатформенный калькулятор. Принцип работы взят из самого простого калькулятора, тоесть вычисления выполняются последовательно, приоритет математических 
-операторов не учитывается.*]
-
-**For example, the mathematical expression InfoOS will calculate as:**
-
-[*Например математическое выражение InfoOS посчитает как:*]
-
-> 5 + 5 * 5 = 50
-
-**but not like this:**
-
-[*но не так:*]
-
-> 5 + 5 * 5 = 30
-
-**This was done on purpose, since most people do not take into account the priority
-of mathematical operators.**
-
-[*Сделалось это специально, так как большинство людей не учитывают приоритет 
-математических операторов.*]
-
-**InfoOS settings allow you to:**
-
-[*Настройки InfoOS позволяют:*]
-
-1. Set the rule of rounding numbers [*Установить правило окруление чисел*]
-2. Set the length of the story [*Установить длину истории*]
-3. Set the vibration release [*Установить вибрационный отклик*]
-
-**InfoOS also shows the history of mathematical calculations.**
-
-[*Также InfoOS показывает историю математических вычислений.*]
+[*InfoOS - это программа которая показывает системную информацию о приложении и ОС Android.*]
 
 <p align="right">(<a href="#top">back to top [вернуться к началу]</a>)</p>
 <!-- ------------------------------------------------------------------------------------------->
@@ -172,7 +124,9 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 * [![Python][Python.org]][Python-url]
 * [![Kivy][Kivy.org]][Kivy-url]
-* [![Json][Json.org]][Json-url]
+* [![Plyer][Plyer.org]][Plyer-url]
+* [![Pyjnius][Pyjnius.org]][Pyjnius-url]
+* [![Buildozer][Buildozer.org]][Pyjnius-url]
 * [![Debian][Debian.org]][Debian-url]
 * [![VSCode][VSCode.org]][VSCode-url]
 * [![Git][Git.org]][Git-url]
@@ -204,16 +158,11 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 ### **Installation [Установка]**
 
-1. Running the program in Linux, MacOS, Windows and other operating systems [*Запуск программы в Linux, MacOS, Windows и других операционных системах*]:
-   ```sh
-   python main.py
-   ```
-2. If the program gives an error at startup, it means that the necessary libraries for launching the Kivy framework are not installed. Follow the link [https://github.com/kivy/kivy](https://github.com/kivy/kivy) and read what needs to be done [*Если программа выдает ошибку при запуске, это означает, что необходимые библиотеки для запуска фреймворка Kivy не установлены. Перейдите по ссылке [https://github.com/kivy/kivy](https://github.com/kivy/kivy) и прочитайте, что нужно сделать*].
-3. Building a project on Android [*Создание проекта на Android*]:
+1. Building a project on Android [*Создание проекта на Android*]:
    ```sh
    buildozer -v android debug
    ```
-4. If the project has not been assembled, it means that the Bulldozer program libraries are not installed. Follow the link [https://github.com/kivy/buildozer](https://github.com/kivy/buildozer) and read what needs to be done [*Если проект не был собран, это означает, что библиотеки программ Bulldozer не установлены. Перейдите по ссылке [https://github.com/kivy/buildozer](https://github.com/kivy/buildozer) и прочитайте, что нужно сделать*].
+2. If the project has not been assembled, it means that the Bulldozer program libraries are not installed. Follow the link [https://github.com/kivy/buildozer](https://github.com/kivy/buildozer) and read what needs to be done [*Если проект не был собран, это означает, что библиотеки программ Bulldozer не установлены. Перейдите по ссылке [https://github.com/kivy/buildozer](https://github.com/kivy/buildozer) и прочитайте, что нужно сделать*].
 
 <p align="right">(<a href="#top">back to top [вернуться к началу]</a>)</p>
 <!-- ------------------------------------------------------------------------------------------->
@@ -231,7 +180,16 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- ROADMAP ----------------------------------------------------------------------------------->
 ## **Roadmap [История изменений]**
 
-- [x] Add History [*Добавлена история вычислений*]
+- [x] SDK version [*Версия SDK*]
+- [x] App package name [*Имя пакета App*]
+- [x] Installer name [*Имя установщика App*]
+- [x] Absolute app path [*Абсолютный путь App*]
+- [x] Full app path [*Полный путь App*]
+- [x] Files app [*Файлы App*]
+- [x] Path app files [*Путь к файлам App*]
+- [x] Hdd path [*Путь к Hdd*]
+- [x] OS language [*Язык ОС*]
+- [x] Device vibration [*Вибрация устройства*]
 - [ ] Multi-language Support [*Поддержка нескольких языков*]
     - [ ] English
     - [ ] Русский
@@ -295,6 +253,9 @@ Project Link [*Ссылка на проект*]: [https://github.com/MER-GROUP/I
 
 * [Python](https://www.python.org/)
 * [Kivy](https://kivy.org/#home)
+* [Plyer](https://github.com/kivy/plyer)
+* [Pyjnius](https://github.com/kivy/pyjnius)
+* [Buildozer](https://github.com/kivy/buildozer)
 * [Json](https://www.json.org/json-en.html)
 * [Debian](https://www.debian.org/)
 * [VSCode](https://code.visualstudio.com/)
@@ -377,6 +338,18 @@ Project Link [*Ссылка на проект*]: [https://github.com/MER-GROUP/I
 <!-- Kivy -->
 [Kivy.org]: https://img.shields.io/badge/kivy-49444E?style=for-the-badge&logo=python&logoColor=white
 [Kivy-url]: https://kivy.org/
+
+<!-- Plyer -->
+[Plyer.org]: https://img.shields.io/badge/plyer-49444E?style=for-the-badge&logo=python&logoColor=white
+[Plyer-url]: https://github.com/kivy/plyer
+
+<!-- Pyjnius -->
+[Pyjnius.org]: https://img.shields.io/badge/pyjnius-49444E?style=for-the-badge&logo=python&logoColor=white
+[Pyjnius-url]: https://github.com/kivy/pyjnius
+
+<!-- Buildozer -->
+[Buildozer.org]: https://img.shields.io/badge/buildozer-49444E?style=for-the-badge&logo=python&logoColor=white
+[Buildozer-url]: https://github.com/kivy/buildozer
 
 <!-- Json -->
 [Json.org]: https://img.shields.io/badge/json-D0B4C4?style=for-the-badge&logo=json&logoColor=white
