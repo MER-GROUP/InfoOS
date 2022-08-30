@@ -41,6 +41,10 @@ class Translate:
             'Абсолютный путь App',
             'Absolute app path'
         ],
+        'primary_external_storage_path': [
+            'Путь к Hdd',
+            'Hdd path'
+        ],
         'intro': [
             'Данная программа предназначена для получения информации об аппаратном обеспечении и операционной системе устройства.',
             'This program is designed to obtain information about the hardware and operating system of the device.'

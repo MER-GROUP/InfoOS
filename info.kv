@@ -132,6 +132,15 @@
         # on_release: app.menu_str = translate().get_translate(file().file_get_local_language(), 'files_path_app')
         # on_release: app.change_text(info_label, api().path_files_app_show())
         on_release: app.api_str = api().path_files_app_show()
+    # Путь к внутреннему хранилицу в Android
+    DropDownButton:
+        text: translate().get_translate(file().file_get_local_language(), 'primary_external_storage_path')
+        size_hint_y: None
+        height: '48dp'
+        on_release: root.select(translate().get_translate(file().file_get_local_language(), 'primary_external_storage_path'))
+        # on_release: app.menu_str = translate().get_translate(file().file_get_local_language(), 'primary_external_storage_path')
+        # on_release: app.change_text(info_label, api().path_to_primary_external_storage())
+        on_release: app.api_str = api().path_to_primary_external_storage()
     # Пример использования DropDown
     # DropDownButton:
     #     text: 'IN LISTS'
