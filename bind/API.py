@@ -332,6 +332,11 @@ class API:
     #   Попросите вибратор вибрировать в течение заданного периода времени.
     #   :param time: Время для вибрации в секундах. Значение по умолчанию равно '0.5'.
     #   https://github.com/kivy/plyer/blob/master/plyer/facades/vibrator.py
+    #
+    # vibrator.exists() -> None:
+    #   Check if the device has a vibrator. Returns True or False.
+    #   Проверьте, есть ли в устройстве вибратор. Возвращает значение True или False.
+    #   https://github.com/kivy/plyer/blob/master/plyer/facades/vibrator.py
     def vibrator_run(self, time=0.5) -> bool:
         '''
         Ask the vibrator to vibrate for the given period.
@@ -340,7 +345,7 @@ class API:
         '''
         if 'android' == platform:
             try:
-                if vibrator.hasVibrator():
+                if vibrator.exists():
                     vibrator.vibrate(time)
                     return True
                 else:
