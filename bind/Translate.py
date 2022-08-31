@@ -1,7 +1,21 @@
+'''
+class Translate - класс для автоматической локализации программы на родной язык
+
+Дополнительные сторонние модули для обработки файлов
+    нет
+
+Реализация методов класса - Макс Романенко (Red Alert) - 2022г.
+'''
 # *****************************************************************************************
 # Translate - автоматическая локализация программы на родной язык
 class Translate:
+    '''
+    class Translate - класс для автоматической локализации программы на родной язык\n
+    методы:\n
+        get_translate(self, lang: str, name: str) -> str\n
+    '''
     # ---------------------------------------------------------------------------
+    # dictionary of Russian and English
     # словарь руского и английского языка
     translate = {
         'about': [
@@ -121,6 +135,16 @@ class Translate:
     # ---------------------------------------------------------------------------
     # переводит строку в английский или русский язык
     def get_translate(self, lang: str, name: str) -> str:
+        '''
+        Eng:\n
+        Translates a string into English or Russian.\n
+        :param lang: the language set in the OS by default.\n
+        :param name: string key for translation.\n
+        Rus:\n
+        Переводит строку в английский или русский язык.\n
+        :параметр lang: язык установленный в ОС по умолчанию.\n
+        :параметр name: строковый ключ для перевода.\n
+        '''
         try:
             if (lang.lower() in 'russianрусский'):
                 return self.translate[name][0]
@@ -136,5 +160,6 @@ if __name__ == '__main__':
     print('-------------------------------------')
     print('+++++get_translate+++++')
     print(Translate().get_translate('en', 'info'))
+    print(Translate().get_translate('ru', 'info'))
     print(Translate().get_translate('en', 'error'))
 # *****************************************************************************************
