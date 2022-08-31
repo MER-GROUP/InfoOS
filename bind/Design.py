@@ -10,7 +10,7 @@ class Design - класс для манипуляции (действия) с о
 # Design - манипуляции (действия) с объектами kivy
 class Design:
     '''
-    class API - класс для манипуляции (действия) с объектами kivy\n
+    class Design - класс для манипуляции (действия) с объектами kivy\n
     методы:\n
         button_disable(self, buttton) -> None\n
         button_enable(self, buttton) -> None\n
