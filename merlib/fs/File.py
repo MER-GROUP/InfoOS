@@ -9,7 +9,7 @@ class File - класс для обработки файлов
     stat
     pathlib
 
-Реализация методов класса - Максим Романенко (Red Alert) - 2022г.
+Реализация методов класса - Макс Романенко (Red Alert) - 2022г.
 '''
 # *****************************************************************************************
 # модуль для легкого копирования файлов и папок
@@ -52,33 +52,33 @@ import locale
 # класс для работы с файлом
 class File:
     '''
-    class File - класс для обработки файлов
-    методы:
-        file_console_print_file_utf8(file: str, curdir: str = __file__) -> None     
-        file_console_print_list(arr: list) -> None                                  
-        file_create(file: str, curdir: str = __file__) -> bool                      
-        file_create_dir(dir: str, curdir: str = __file__) -> bool                   
-        file_delete(file: str, curdir: str = __file__) -> bool                      
-        file_delete_empty_folder(dir: str, curdir: str = __file__) -> bool          
-        file_delete_full_folder(dir: str, curdir: str = __file__) -> bool           
-        file_exists(file: str, curdir: str = __file__) -> bool                      
-        file_exists_dir(dir: str, curdir: str = __file__) -> bool                   
-        file_init_dir(folder: str, dir: str, curdir: str = __file__) -> str         
-        file_init_name(folder: str, filename: str, curdir: str = __file__) -> str   
-        file_get_current_dir_files() -> list[str]                                   
-        file_get_dir_files(dir: str, curdir: str = __file__) -> list[str]           
-        file_get_current_access_dir_in_str() -> list[str]                           
-        file_get_current_access_dir_in_int() -> list[int]                           
-        file_get_installer() -> str                                                 
-        file_get_path_to_downloads() -> str                                         
-        file_get_local_language() -> str                                            
-        file_set_access_open_all(name: str, curdir: str = __file__) -> bool         
-        file_set_access_close_all(name: str, curdir: str = __file__) -> bool        
-        file_read(file: str, curdir: str = __file__) -> list[str]                   
-        file_read_utf8(file: str, curdir: str = __file__) -> list[str]              
-        file_write(file: str, arr: list, curdir: str = __file__) -> None            
-        file_write_append(file: str, arr: list, curdir: str = __file__) -> None     
-        file_write_dict(file: str, dictor: dict, curdir: str = __file__) -> None              
+    class File - класс для обработки файлов\n
+    методы:\n
+        file_console_print_file_utf8(file: str, curdir: str = __file__) -> None\n   
+        file_console_print_list(arr: list) -> None\n                                  
+        file_create(file: str, curdir: str = __file__) -> bool\n                      
+        file_create_dir(dir: str, curdir: str = __file__) -> bool\n                   
+        file_delete(file: str, curdir: str = __file__) -> bool\n                      
+        file_delete_empty_folder(dir: str, curdir: str = __file__) -> bool\n          
+        file_delete_full_folder(dir: str, curdir: str = __file__) -> bool\n           
+        file_exists(file: str, curdir: str = __file__) -> bool\n                      
+        file_exists_dir(dir: str, curdir: str = __file__) -> bool\n                   
+        file_init_dir(folder: str, dir: str, curdir: str = __file__) -> str\n         
+        file_init_name(folder: str, filename: str, curdir: str = __file__) -> str\n   
+        file_get_current_dir_files() -> list[str]\n                                   
+        file_get_dir_files(dir: str, curdir: str = __file__) -> list[str]\n           
+        file_get_current_access_dir_in_str() -> list[str]\n                           
+        file_get_current_access_dir_in_int() -> list[int]\n                           
+        file_get_installer() -> str\n                                                 
+        file_get_path_to_downloads() -> str\n                                         
+        file_get_local_language() -> str\n                                            
+        file_set_access_open_all(name: str, curdir: str = __file__) -> bool\n         
+        file_set_access_close_all(name: str, curdir: str = __file__) -> bool\n        
+        file_read(file: str, curdir: str = __file__) -> list[str]\n                   
+        file_read_utf8(file: str, curdir: str = __file__) -> list[str]\n              
+        file_write(file: str, arr: list, curdir: str = __file__) -> None\n            
+        file_write_append(file: str, arr: list, curdir: str = __file__) -> None\n     
+        file_write_dict(file: str, dictor: dict, curdir: str = __file__) -> None\n              
     '''
     # ---------------------------------------------------------------------------
     # вывод в консоль содержимого файла содержащий текст в utf-8 кодировке 
@@ -567,6 +567,8 @@ class File:
                 pass
             # if android
             if hasattr(sys, 'getandroidapilevel'):
+                # api_version - определение версии SDK программного обеспечения
+                from android import api_version
                 # получить установщик данного файла
                 from jnius import autoclass, cast, JavaException
                 try:
@@ -575,10 +577,21 @@ class File:
                     Context = cast('android.content.Context', Activity.getApplicationContext())
                     # получить установщик данного файла
                     # на Android <= 29 SDK API
-                    return str(
-                        Context.getPackageManager().getInstallerPackageName(
-                            str(Context.getPackageName())
+                    if 30 > api_version: 
+                        return str(
+                            Context.getPackageManager().getInstallerPackageName(
+                                str(
+                                    Context.getPackageName()
+                                )
                             )
+                        )
+                    else:
+                        return str(
+                            Context.getPackageManager().getInstallSourceInfo(
+                                str(
+                                    Context.getPackageName()
+                                )
+                            ).getInstallingPackageName()
                         )
                 except (BaseException) as e:
                     return ('BaseException: ' + str(e))
