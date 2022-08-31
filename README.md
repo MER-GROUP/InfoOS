@@ -126,7 +126,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 * [![Kivy][Kivy.org]][Kivy-url]
 * [![Plyer][Plyer.org]][Plyer-url]
 * [![Pyjnius][Pyjnius.org]][Pyjnius-url]
-* [![Buildozer][Buildozer.org]][Pyjnius-url]
+* [![Buildozer][Buildozer.org]][Buildozer-url]
 * [![Debian][Debian.org]][Debian-url]
 * [![VSCode][VSCode.org]][VSCode-url]
 * [![Git][Git.org]][Git-url]
