@@ -24,7 +24,7 @@ class Permission:
     '''
     class Permission - класс для работы с правами доступа ОС Android\n
     методы:\n
-        None\n
+        permission_set(self, permissions_arr: list[str]) -> (None|str)\n
 
     Инструкция:\n
         Не забываем добавить все Permissions в файл buildozer.spec\n
@@ -56,6 +56,7 @@ class Permission:
             Permission.INSTALL_PACKAGES,
             Permission.INTERNET]
         API_30 = [Permission.INSTALL_PACKAGES]
+    # for tests
     else:
         API_ALL = ['Permission.WRITE_EXTERNAL_STORAGE',
             'Permission.READ_EXTERNAL_STORAGE',
@@ -64,7 +65,7 @@ class Permission:
             'Permission.INTERNET']
         API_30 = ['Permission.INSTALL_PACKAGES']
     # ---------------------------------------------------------------------------
-    # Задать разрешения для ОС Aandrois
+    # Задать разрешения для ОС Android
     def permission_set(self, permissions_arr: list[str]) -> (None|str):
         '''
         Eng:\n
@@ -75,7 +76,15 @@ class Permission:
         # if 'android' == platform:
         if hasattr(__import__('sys'), 'getandroidapilevel'):
             try:
-                pass
+                # algorithm
+                # определить права доступа
+                if (30 <= api_version) and (set(permissions_arr).intersection(set(self.API_30))):
+                    perms = permissions_arr
+                else:
+                    perms = permissions_arr                  
+                # Получить права доступа на чтение и запись
+                while self.__permissions_check(perms)!= True:
+                    request_permissions(perms)
             except JavaException as e:
                 return 'EXCEPT JAVA: ' + str(e)
             except BaseException as e:
@@ -83,6 +92,13 @@ class Permission:
         else:
             # return 'Данный метод не реализован ...'
             return 'This method is not implemented ...'
+    # ---------------------------------------------------------------------------
+    # проверить права доступа на доступ
+    def __permissions_check(self, perms):
+        for perm in perms:
+            if check_permission(perm) != True:
+                return False
+        return True
     # ---------------------------------------------------------------------------
 # *****************************************************************************************
 # тесты
