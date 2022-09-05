@@ -78,10 +78,11 @@ class Permission:
             try:
                 # algorithm
                 # определить права доступа
-                # API 30 и больше
-                if (30 <= api_version) and (set(permissions_arr).intersection(set(self.API_30))):
+                # API 30 и больше + Permission которые добавлены в API 30
+                # и Permission которые не менялись в API
+                if (30 <= api_version):
                     perms = permissions_arr
-                # API 29 и меньше
+                # API 29 и меньше + и Permission которые не менялись в API
                 else:              
                     perms = list(set(Permission.API_ALL).difference(set(Permission.API_30)))             
                 # Получить права доступа на чтение и запись
