@@ -7,15 +7,14 @@ __version__ = '1.00'
 # *****************************************************************************************
 # ++++++++++++++++++++++++ РАБОТА С ПРАВАДИ ДОСТУПА ANDROID +++++++++++++++++++++++++++++++
 # собственные модули
-# Класс для работы с правами доступа ОС Android
-from merlib.android.Access import Access
-my_permission = Access()
+# Модуль для работы с правами доступа ОС Android
+from merlib.android.Access import permission_set
 perms = ['Permission.WRITE_EXTERNAL_STORAGE',
         'Permission.READ_EXTERNAL_STORAGE',
         'Permission.VIBRATE',
         'Permission.INSTALL_PACKAGES',
         'Permission.INTERNET']
-my_permission.permission_set(perms)
+permission_set(perms)
 # # глобальная переменная
 # # разрешен ли доступ на чтение и запись файлов
 # is_access_open = True
