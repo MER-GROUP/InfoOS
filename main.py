@@ -6,43 +6,53 @@
 __version__ = '1.00'
 # *****************************************************************************************
 # ++++++++++++++++++++++++ РАБОТА С ПРАВАДИ ДОСТУПА ANDROID +++++++++++++++++++++++++++++++
-# глобальная переменная
-# разрешен ли доступ на чтение и запись файлов
-is_access_open = True
+# собственные модули
+# Класс для работы с правами доступа ОС Android
+from merlib.android.Access import Access
+my_permission = Access()
+perms = [Permission.WRITE_EXTERNAL_STORAGE,
+        Permission.READ_EXTERNAL_STORAGE,
+        Permission.VIBRATE,
+        Permission.INSTALL_PACKAGES,
+        Permission.INTERNET]
+my_permission.permission_set(perms)
+# # глобальная переменная
+# # разрешен ли доступ на чтение и запись файлов
+# is_access_open = True
 
-# если ОС Android, то загрузить следующие модули
-if hasattr(__import__('sys'), 'getandroidapilevel'):
-    # ----------------------------------------------------------------------
-    # модуль plyer - работа с железом устройства
-    # from plyer import vibrator
-    # ----------------------------------------------------------------------
-    # api_version - определение версии SDK программного обеспечения
-    from android import api_version
-    # ----------------------------------------------------------------------
-    # permissions - права доступа на чтение и запись файлов
-    from android.permissions import Permission, request_permissions, check_permission
+# # если ОС Android, то загрузить следующие модули
+# if hasattr(__import__('sys'), 'getandroidapilevel'):
+#     # ----------------------------------------------------------------------
+#     # модуль plyer - работа с железом устройства
+#     # from plyer import vibrator
+#     # ----------------------------------------------------------------------
+#     # api_version - определение версии SDK программного обеспечения
+#     from android import api_version
+#     # ----------------------------------------------------------------------
+#     # permissions - права доступа на чтение и запись файлов
+#     from android.permissions import Permission, request_permissions, check_permission
 
-    # проверить права доступа
-    def check_permissions(perms):
-        for perm in perms:
-            if check_permission(perm) != True:
-                is_access_open = False
-                return False
-        return True
+#     # проверить права доступа
+#     def check_permissions(perms):
+#         for perm in perms:
+#             if check_permission(perm) != True:
+#                 is_access_open = False
+#                 return False
+#         return True
 
-    # определить права доступа
-    if 30 > api_version:
-        perms = [Permission.WRITE_EXTERNAL_STORAGE, 
-                Permission.READ_EXTERNAL_STORAGE]
-    else:
-        perms = [Permission.WRITE_EXTERNAL_STORAGE, 
-                Permission.READ_EXTERNAL_STORAGE, 
-                Permission.INSTALL_PACKAGES]
+#     # определить права доступа
+#     if 30 > api_version:
+#         perms = [Permission.WRITE_EXTERNAL_STORAGE, 
+#                 Permission.READ_EXTERNAL_STORAGE]
+#     else:
+#         perms = [Permission.WRITE_EXTERNAL_STORAGE, 
+#                 Permission.READ_EXTERNAL_STORAGE, 
+#                 Permission.INSTALL_PACKAGES]
         
-    # Получить права доступа на чтение и запись
-    while check_permissions(perms)!= True:
-        request_permissions(perms)
-    # ----------------------------------------------------------------------
+#     # Получить права доступа на чтение и запись
+#     while check_permissions(perms)!= True:
+#         request_permissions(perms)
+#     # ----------------------------------------------------------------------
 # *****************************************************************************************
 # ++++++++++++++++++++++++++++++ РАБОТА С ФАЙЛОВОЙ СИСТЕМОЙ +++++++++++++++++++++++++++++++
 # собственные модули

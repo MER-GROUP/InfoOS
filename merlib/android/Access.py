@@ -1,5 +1,5 @@
 '''
-class Permission - класс для работы с правами доступа ОС Android
+class Access - класс для работы с правами доступа ОС Android
 
 Дополнительные сторонние модули для обработки файлов
     android
@@ -20,9 +20,9 @@ if hasattr(__import__('sys'), 'getandroidapilevel'):
     from jnius import autoclass, cast, JavaException
 # *****************************************************************************************
 # Permission - класс для работы с правами доступа ОС Android
-class Permission:
+class Access:
     '''
-    class Permission - класс для работы с правами доступа ОС Android\n
+    class Access - класс для работы с правами доступа ОС Android\n
     методы:\n
         permission_set(self, permissions_arr: list[str]) -> (None|str)\n
 
@@ -51,22 +51,22 @@ class Permission:
     # if 'android' == platform:
     if hasattr(__import__('sys'), 'getandroidapilevel'):
         API_ALL = [Permission.WRITE_EXTERNAL_STORAGE,
-            Permission.READ_EXTERNAL_STORAGE,
-            Permission.VIBRATE,
-            Permission.INSTALL_PACKAGES, # API 30
-            Permission.INTERNET]
+                Permission.READ_EXTERNAL_STORAGE,
+                Permission.VIBRATE,
+                Permission.INSTALL_PACKAGES, # API 30
+                Permission.INTERNET]
         API_30 = [Permission.INSTALL_PACKAGES]
     # for tests
     else:
         API_ALL = ['Permission.WRITE_EXTERNAL_STORAGE',
-            'Permission.READ_EXTERNAL_STORAGE',
-            'Permission.VIBRATE',
-            'Permission.INSTALL_PACKAGES', # API 30
-            'Permission.INTERNET']
+                'Permission.READ_EXTERNAL_STORAGE',
+                'Permission.VIBRATE',
+                'Permission.INSTALL_PACKAGES', # API 30
+                'Permission.INTERNET']
         API_30 = ['Permission.INSTALL_PACKAGES']
     # ---------------------------------------------------------------------------
     # Задать разрешения для ОС Android
-    def permission_set(self, permissions_arr: list[str]) -> (None|str):
+    def permission_set(self, permissions_arr: list[Permission]) -> (None|str):
         '''
         Eng:\n
         Set permissions for Android OS.\n
@@ -84,7 +84,7 @@ class Permission:
                     perms = permissions_arr
                 # API 29 и меньше + и Permission которые не менялись в API
                 else:              
-                    perms = list(set(Permission.API_ALL).difference(set(Permission.API_30)))             
+                    perms = list(set(Access.API_ALL).difference(set(Access.API_30)))             
                 # Получить права доступа на чтение и запись
                 while self.__permissions_check(perms)!= True:
                     request_permissions(perms)
@@ -127,7 +127,7 @@ if __name__ == '__main__':
     myset3 = myset1.intersection(myset2)
     print(bool(myset3))
     # test3
-    myset = set(Permission.API_ALL).intersection(set(Permission.API_30))
+    myset = set(Access.API_ALL).intersection(set(Access.API_30))
     print(bool(myset))
     '''
     # Разность множеств: метод difference()
@@ -142,7 +142,7 @@ if __name__ == '__main__':
     myset3 = myset1.difference(myset2)
     print(myset3)
     # test5
-    myset = set(Permission.API_ALL).difference(set(Permission.API_30))
+    myset = set(Access.API_ALL).difference(set(Access.API_30))
     print(myset)
     print(list(myset))
 # *****************************************************************************************
