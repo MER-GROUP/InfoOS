@@ -9,11 +9,15 @@ class Permission - класс для работы с правами доступ
 '''
 # *****************************************************************************************
 # module
-# api_version - определение версии SDK программного обеспечения
-from android import api_version
-# autoclass - импорт java классов
-# JavaException - работа с исключениями java классов
-from jnius import autoclass, cast, JavaException
+# if 'android' == platform:
+if hasattr(__import__('sys'), 'getandroidapilevel'):
+    # api_version - определение версии SDK программного обеспечения
+    from android import api_version
+    # permissions - права доступа на чтение и запись файлов
+    from android.permissions import Permission, request_permissions, check_permission
+    # autoclass - импорт java классов
+    # JavaException - работа с исключениями java классов
+    from jnius import autoclass, cast, JavaException
 # *****************************************************************************************
 # Permission - класс для работы с правами доступа ОС Android
 class Permission:
@@ -27,7 +31,7 @@ class Permission:
         # (list) Permissions\n
         android.permissions = READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE, VIBRATE, INSTALL_PACKAGES\n
 
-    Расшифровка Permissions:\n
+    Расшифровка некоторых Permissions:\n
         READ_EXTERNAL_STORAGE - разрешить чтение файлов на устройстве\n
         WRITE_EXTERNAL_STORAGE - разрешить запись файлов на устройстве\n
         VIBRATE - разрешить вибрацию устройства\n
@@ -43,7 +47,22 @@ class Permission:
     '''
     # ---------------------------------------------------------------------------
     # vars
-    pass
+    # список Permission
+    # if 'android' == platform:
+    if hasattr(__import__('sys'), 'getandroidapilevel'):
+        API_ALL = [Permission.WRITE_EXTERNAL_STORAGE,
+            Permission.READ_EXTERNAL_STORAGE,
+            Permission.VIBRATE,
+            Permission.INSTALL_PACKAGES,
+            Permission.INTERNET]
+        API_30 = [Permission.INSTALL_PACKAGES]
+    else:
+        API_ALL = ['Permission.WRITE_EXTERNAL_STORAGE',
+            'Permission.READ_EXTERNAL_STORAGE',
+            'Permission.VIBRATE',
+            'Permission.INSTALL_PACKAGES',
+            'Permission.INTERNET']
+        API_30 = ['Permission.INSTALL_PACKAGES']
     # ---------------------------------------------------------------------------
     # Задать разрешения для ОС Aandrois
     def permission_set(self, permissions_arr: list[str]) -> (None|str):
@@ -71,5 +90,24 @@ class Permission:
 if __name__ == '__main__':
     print('-------------------------------------')
     # method
-    pass
+    '''
+    # Пересечение множеств: метод intersection()
+    myset1 = {1, 2, 3, 4, 5}
+    myset2 = {3, 4, 6, 7, 8}
+    myset3 = myset1.intersection(myset2)
+    print(myset3)
+    '''
+    # test1
+    myset1 = {1, 2, 3, 4, 5}
+    myset2 = {3, 4, 6, 7, 8}
+    myset3 = myset1.intersection(myset2)
+    print(bool(myset3))
+    # test2
+    myset1 = {1, 2, 3, 4, 5}
+    myset2 = {6, 7, 8}
+    myset3 = myset1.intersection(myset2)
+    print(bool(myset3))
+    # test3
+    myset = set(Permission.API_ALL).intersection(set(Permission.API_30))
+    print(bool(myset))
 # *****************************************************************************************
