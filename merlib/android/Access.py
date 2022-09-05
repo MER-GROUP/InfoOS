@@ -31,9 +31,9 @@ module Access - класс для работы с правами доступа 
 '''
 # *****************************************************************************************
 # доступность функций вне модуля
-__all__ = ('permission_set',
-            'qqqqqqqqqqqqqq',
-            'wwwwwwwwwwwwww')
+__all__ = ('converter_str_to_permission',
+            'permissions_check',
+            'permission_set')
 # *****************************************************************************************
 # module
 # if 'android' == platform:
