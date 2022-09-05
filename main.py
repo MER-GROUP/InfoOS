@@ -16,6 +16,9 @@ if hasattr(__import__('sys'), 'getandroidapilevel'):
     # модуль plyer - работа с железом устройства
     # from plyer import vibrator
     # ----------------------------------------------------------------------
+    # api_version - определение версии SDK программного обеспечения
+    from android import api_version
+    # ----------------------------------------------------------------------
     # permissions - права доступа на чтение и запись файлов
     from android.permissions import Permission, request_permissions, check_permission
 
@@ -28,10 +31,13 @@ if hasattr(__import__('sys'), 'getandroidapilevel'):
         return True
 
     # определить права доступа
-    perms = [Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE]
-    # perms = [Permission.WRITE_EXTERNAL_STORAGE, 
-    #         Permission.READ_EXTERNAL_STORAGE, 
-    #         Permission.INSTALL_PACKAGES]
+    if 30 > api_version:
+        perms = [Permission.WRITE_EXTERNAL_STORAGE, 
+                Permission.READ_EXTERNAL_STORAGE]
+    else:
+        perms = [Permission.WRITE_EXTERNAL_STORAGE, 
+                Permission.READ_EXTERNAL_STORAGE, 
+                Permission.INSTALL_PACKAGES]
         
     # Получить права доступа на чтение и запись
     while check_permissions(perms)!= True:
