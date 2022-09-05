@@ -80,14 +80,16 @@ class Access:
         if hasattr(__import__('sys'), 'getandroidapilevel'):
             try:
                 # algorithm
+                # конвертация Permission
+                self.__converter_str_to_permission(permissions_arr)
                 # определить права доступа
                 # API 30 и больше + Permission которые добавлены в API 30
                 # и Permission которые не менялись в API
                 if (30 <= api_version):
-                    perms = permissions_arr
+                    perms = self.API_ALL
                 # API 29 и меньше + и Permission которые не менялись в API
                 else:              
-                    perms = list(set(Access.API_ALL).difference(set(Access.API_30)))             
+                    perms = list(set(self.API_ALL).difference(set(self.API_30)))             
                 # Получить права доступа на чтение и запись
                 while self.__permissions_check(perms)!= True:
                     request_permissions(perms)
@@ -99,8 +101,10 @@ class Access:
             # return 'Данный метод не реализован ...'
             return 'This method is not implemented ...'
     # ---------------------------------------------------------------------------
-    def __converter_str_to_permission(self, permissions_arr: list[str]) -> list[Permission]:
-        arr = None
+    # конвертация текстовой строки Permission в объект Permission
+    def __converter_str_to_permission(self, permissions_arr: list[str]) -> None:
+        for perm in permissions_arr:
+            self.API_ALL.append(self.API_DICT[perm])
     # ---------------------------------------------------------------------------
     # проверить права доступа на доступ
     def __permissions_check(self, perms) -> None:
