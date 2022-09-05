@@ -31,7 +31,9 @@ module Access - класс для работы с правами доступа 
 '''
 # *****************************************************************************************
 # доступность функций вне модуля
-__all__ = ('permission_set')
+__all__ = ('permission_set',
+            'qqqqqqqqqqqqqq',
+            'wwwwwwwwwwwwww')
 # *****************************************************************************************
 # module
 # if 'android' == platform:
@@ -64,7 +66,19 @@ else:
             'Permission.INSTALL_PACKAGES', # API 30
             'Permission.INTERNET']
     API_30 = ['Permission.INSTALL_PACKAGES']
-# ---------------------------------------------------------------------------
+# *****************************************************************************************
+# конвертация текстовой строки Permission в объект Permission
+def converter_str_to_permission(permissions_arr: list[str]) -> None:
+    for perm in permissions_arr:
+        API_ALL.append(API_DICT[perm])
+# *****************************************************************************************
+# проверить права доступа на доступ
+def permissions_check(perms) -> None:
+    for perm in perms:
+        if check_permission(perm) != True:
+            return False
+    return True
+# *****************************************************************************************
 # Задать разрешения для ОС Android
 def permission_set(permissions_arr: list[str]) -> (None|str):
     '''
@@ -78,7 +92,7 @@ def permission_set(permissions_arr: list[str]) -> (None|str):
         try:
             # algorithm
             # конвертация Permission
-            __converter_str_to_permission(permissions_arr)
+            converter_str_to_permission(permissions_arr)
             # определить права доступа
             # API 30 и больше + Permission которые добавлены в API 30
             # и Permission которые не менялись в API
@@ -88,7 +102,7 @@ def permission_set(permissions_arr: list[str]) -> (None|str):
             else:              
                 perms = list(set(API_ALL).difference(set(API_30)))             
             # Получить права доступа на чтение и запись
-            while __permissions_check(perms)!= True:
+            while permissions_check(perms)!= True:
                 request_permissions(perms)
         except JavaException as e:
             return 'EXCEPT JAVA: ' + str(e)
@@ -97,18 +111,6 @@ def permission_set(permissions_arr: list[str]) -> (None|str):
     else:
         # return 'Данный метод не реализован ...'
         return 'This method is not implemented ...'
-# *****************************************************************************************
-# конвертация текстовой строки Permission в объект Permission
-def __converter_str_to_permission(permissions_arr: list[str]) -> None:
-    for perm in permissions_arr:
-        API_ALL.append(API_DICT[perm])
-# *****************************************************************************************
-# проверить права доступа на доступ
-def __permissions_check(self, perms) -> None:
-    for perm in perms:
-        if check_permission(perm) != True:
-            return False
-    return True
 # *****************************************************************************************
 # тесты
 # если не модуль то выполнить программу
