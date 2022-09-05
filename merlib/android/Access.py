@@ -39,11 +39,11 @@ class Access:
         INTERNET - разрешить доступ в интернет\n
 
     Пример создания массива Permissions:\n
-        perms = [Permission.WRITE_EXTERNAL_STORAGE,\n
-                Permission.READ_EXTERNAL_STORAGE,\n
-                Permission.VIBRATE,\n
-                Permission.INSTALL_PACKAGES,\n
-                Permission.INTERNET]\n
+        perms = ['Permission.WRITE_EXTERNAL_STORAGE',\n
+                'Permission.READ_EXTERNAL_STORAGE',\n
+                'Permission.VIBRATE',\n
+                'Permission.INSTALL_PACKAGES',\n
+                'Permission.INTERNET']\n
     '''
     # ---------------------------------------------------------------------------
     # vars
@@ -65,8 +65,12 @@ class Access:
                 'Permission.INTERNET']
         API_30 = ['Permission.INSTALL_PACKAGES']
     # ---------------------------------------------------------------------------
+    # конструктор
+    def __init__(self) -> None:
+        pass
+    # ---------------------------------------------------------------------------
     # Задать разрешения для ОС Android
-    def permission_set(self, permissions_arr: list[Permission]) -> (None|str):
+    def permission_set(self, permissions_arr: list[str]) -> (None|str):
         '''
         Eng:\n
         Set permissions for Android OS.\n

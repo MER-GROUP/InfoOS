@@ -10,11 +10,11 @@ __version__ = '1.00'
 # Класс для работы с правами доступа ОС Android
 from merlib.android.Access import Access
 my_permission = Access()
-perms = [Permission.WRITE_EXTERNAL_STORAGE,
-        Permission.READ_EXTERNAL_STORAGE,
-        Permission.VIBRATE,
-        Permission.INSTALL_PACKAGES,
-        Permission.INTERNET]
+perms = ['Permission.WRITE_EXTERNAL_STORAGE',
+        'Permission.READ_EXTERNAL_STORAGE',
+        'Permission.VIBRATE',
+        'Permission.INSTALL_PACKAGES',
+        'Permission.INTERNET']
 my_permission.permission_set(perms)
 # # глобальная переменная
 # # разрешен ли доступ на чтение и запись файлов
