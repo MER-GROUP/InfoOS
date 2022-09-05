@@ -16,11 +16,30 @@ from android import api_version
 from jnius import autoclass, cast, JavaException
 # *****************************************************************************************
 # Permission - класс для работы с правами доступа ОС Android
-class Net:
+class Permission:
     '''
     class Permission - класс для работы с правами доступа ОС Android\n
     методы:\n
         None\n
+
+    Инструкция:\n
+        Не забываем добавить все Permissions в файл buildozer.spec\n
+        # (list) Permissions\n
+        android.permissions = READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE, VIBRATE, INSTALL_PACKAGES\n
+
+    Расшифровка Permissions:\n
+        READ_EXTERNAL_STORAGE - разрешить чтение файлов на устройстве\n
+        WRITE_EXTERNAL_STORAGE - разрешить запись файлов на устройстве\n
+        VIBRATE - разрешить вибрацию устройства\n
+        INSTALL_PACKAGES - разрешить доступ к установленным пакетам (API 30 и выше)\n
+        INTERNET - разрешить доступ в интернет\n
+
+    Пример создания массива Permissions:\n
+        perms = [Permission.WRITE_EXTERNAL_STORAGE,\n
+                Permission.READ_EXTERNAL_STORAGE,\n
+                Permission.VIBRATE,\n
+                Permission.INSTALL_PACKAGES,\n
+                Permission.INTERNET]\n
     '''
     # ---------------------------------------------------------------------------
     # vars
