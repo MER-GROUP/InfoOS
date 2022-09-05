@@ -47,14 +47,17 @@ class Access:
     '''
     # ---------------------------------------------------------------------------
     # vars
-    # список Permission
+    
     # if 'android' == platform:
     if hasattr(__import__('sys'), 'getandroidapilevel'):
-        API_ALL = [Permission.WRITE_EXTERNAL_STORAGE,
-                Permission.READ_EXTERNAL_STORAGE,
-                Permission.VIBRATE,
-                Permission.INSTALL_PACKAGES, # API 30
-                Permission.INTERNET]
+        # словарь Permission
+        API_DICT = {'Permission.WRITE_EXTERNAL_STORAGE': Permission.WRITE_EXTERNAL_STORAGE,
+            'Permission.READ_EXTERNAL_STORAGE': Permission.READ_EXTERNAL_STORAGE,
+            'Permission.VIBRATE': Permission.VIBRATE,
+            'Permission.INSTALL_PACKAGES': Permission.INSTALL_PACKAGES, # API 30
+            'Permission.INTERNET': Permission.INTERNET}
+        # список Permission
+        API_ALL = list()
         API_30 = [Permission.INSTALL_PACKAGES]
     # for tests
     else:
@@ -64,10 +67,6 @@ class Access:
                 'Permission.INSTALL_PACKAGES', # API 30
                 'Permission.INTERNET']
         API_30 = ['Permission.INSTALL_PACKAGES']
-    # ---------------------------------------------------------------------------
-    # конструктор
-    def __init__(self) -> None:
-        pass
     # ---------------------------------------------------------------------------
     # Задать разрешения для ОС Android
     def permission_set(self, permissions_arr: list[str]) -> (None|str):
@@ -100,8 +99,11 @@ class Access:
             # return 'Данный метод не реализован ...'
             return 'This method is not implemented ...'
     # ---------------------------------------------------------------------------
+    def __converter_str_to_permission(self, permissions_arr: list[str]) -> list[Permission]:
+        arr = None
+    # ---------------------------------------------------------------------------
     # проверить права доступа на доступ
-    def __permissions_check(self, perms):
+    def __permissions_check(self, perms) -> None:
         for perm in perms:
             if check_permission(perm) != True:
                 return False
