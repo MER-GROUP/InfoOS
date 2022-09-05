@@ -53,7 +53,7 @@ class Permission:
         API_ALL = [Permission.WRITE_EXTERNAL_STORAGE,
             Permission.READ_EXTERNAL_STORAGE,
             Permission.VIBRATE,
-            Permission.INSTALL_PACKAGES,
+            Permission.INSTALL_PACKAGES, # API 30
             Permission.INTERNET]
         API_30 = [Permission.INSTALL_PACKAGES]
     # for tests
@@ -61,7 +61,7 @@ class Permission:
         API_ALL = ['Permission.WRITE_EXTERNAL_STORAGE',
             'Permission.READ_EXTERNAL_STORAGE',
             'Permission.VIBRATE',
-            'Permission.INSTALL_PACKAGES',
+            'Permission.INSTALL_PACKAGES', # API 30
             'Permission.INTERNET']
         API_30 = ['Permission.INSTALL_PACKAGES']
     # ---------------------------------------------------------------------------
