@@ -31,9 +31,9 @@ module Access - класс для работы с правами доступа 
 '''
 # *****************************************************************************************
 # доступность функций вне модуля
-__all__ = ('converter_str_to_permission',
-            'permissions_check',
-            'permission_set')
+# __all__ = ('converter_str_to_permission',
+#             'permissions_check',
+#             'permission_set')
 # *****************************************************************************************
 # module
 # if 'android' == platform:
@@ -93,6 +93,7 @@ def permission_set(permissions_arr: list[str]) -> (None|str):
             # algorithm
             # конвертация Permission
             converter_str_to_permission(permissions_arr)
+            perms = list()
             # определить права доступа
             # API 30 и больше + Permission которые добавлены в API 30
             # и Permission которые не менялись в API
