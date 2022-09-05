@@ -78,10 +78,12 @@ class Permission:
             try:
                 # algorithm
                 # определить права доступа
+                # API 30 и больше
                 if (30 <= api_version) and (set(permissions_arr).intersection(set(self.API_30))):
                     perms = permissions_arr
-                else:
-                    perms = permissions_arr                  
+                # API 29 и меньше
+                else:              
+                    perms = list(set(Permission.API_ALL).difference(set(Permission.API_30)))             
                 # Получить права доступа на чтение и запись
                 while self.__permissions_check(perms)!= True:
                     request_permissions(perms)
@@ -126,4 +128,20 @@ if __name__ == '__main__':
     # test3
     myset = set(Permission.API_ALL).intersection(set(Permission.API_30))
     print(bool(myset))
+    '''
+    # Разность множеств: метод difference()
+    myset1 = {1, 2, 3, 4, 5}
+    myset2 = {3, 4, 6, 7, 8}
+    myset3 = myset1.difference(myset2)
+    print(myset3)
+    '''
+    # test4
+    myset1 = {1, 2, 3, 4, 5}
+    myset2 = {3, 4, 6, 7, 8}
+    myset3 = myset1.difference(myset2)
+    print(myset3)
+    # test5
+    myset = set(Permission.API_ALL).difference(set(Permission.API_30))
+    print(myset)
+    print(list(myset))
 # *****************************************************************************************
