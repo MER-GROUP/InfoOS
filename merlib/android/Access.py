@@ -31,53 +31,7 @@ module Access - класс для работы с правами доступа 
 '''
 # *****************************************************************************************
 # доступность функций вне модуля
-# __all__ = ('converter_str_to_permission',
-#             'permissions_check',
-#             'permission_set')
-# *****************************************************************************************
-# module
-# if 'android' == platform:
-if hasattr(__import__('sys'), 'getandroidapilevel'):
-    # api_version - определение версии SDK программного обеспечения
-    from android import api_version
-    # permissions - права доступа на чтение и запись файлов
-    from android.permissions import Permission, request_permissions, check_permission
-    # autoclass - импорт java классов
-    # JavaException - работа с исключениями java классов
-    from jnius import autoclass, cast, JavaException
-# *****************************************************************************************
-# vars
-# if 'android' == platform:
-if hasattr(__import__('sys'), 'getandroidapilevel'):
-    # словарь Permission
-    API_DICT = {'Permission.WRITE_EXTERNAL_STORAGE': Permission.WRITE_EXTERNAL_STORAGE,
-        'Permission.READ_EXTERNAL_STORAGE': Permission.READ_EXTERNAL_STORAGE,
-        'Permission.VIBRATE': Permission.VIBRATE,
-        'Permission.INSTALL_PACKAGES': Permission.INSTALL_PACKAGES, # API 30
-        'Permission.INTERNET': Permission.INTERNET}
-    # список Permission
-    API_ALL = list()
-    API_30 = [Permission.INSTALL_PACKAGES]
-# for tests
-else:
-    API_ALL = ['Permission.WRITE_EXTERNAL_STORAGE',
-            'Permission.READ_EXTERNAL_STORAGE',
-            'Permission.VIBRATE',
-            'Permission.INSTALL_PACKAGES', # API 30
-            'Permission.INTERNET']
-    API_30 = ['Permission.INSTALL_PACKAGES']
-# *****************************************************************************************
-# конвертация текстовой строки Permission в объект Permission
-def converter_str_to_permission(permissions_arr: list[str]) -> None:
-    for perm in permissions_arr:
-        API_ALL.append(API_DICT[perm])
-# *****************************************************************************************
-# проверить права доступа на доступ
-def permissions_check(perms) -> None:
-    for perm in perms:
-        if check_permission(perm) != True:
-            return False
-    return True
+__all__ = ('permission_set')
 # *****************************************************************************************
 # Задать разрешения для ОС Android
 def permission_set(permissions_arr: list[str]) -> (None|str):
@@ -87,6 +41,40 @@ def permission_set(permissions_arr: list[str]) -> (None|str):
     Rus:\n
     Задать разрешения для ОС Aandrois.\n
     '''
+    # ---------------------------------------------------------------------------
+    # module
+    # if 'android' == platform:
+    if hasattr(__import__('sys'), 'getandroidapilevel'):
+        # api_version - определение версии SDK программного обеспечения
+        from android import api_version
+        # permissions - права доступа на чтение и запись файлов
+        from android.permissions import Permission, request_permissions, check_permission
+        # autoclass - импорт java классов
+        # JavaException - работа с исключениями java классов
+        from jnius import autoclass, cast, JavaException
+        # vars
+        # словарь Permission
+        API_DICT = {'Permission.WRITE_EXTERNAL_STORAGE': Permission.WRITE_EXTERNAL_STORAGE,
+            'Permission.READ_EXTERNAL_STORAGE': Permission.READ_EXTERNAL_STORAGE,
+            'Permission.VIBRATE': Permission.VIBRATE,
+            'Permission.INSTALL_PACKAGES': Permission.INSTALL_PACKAGES, # API 30
+            'Permission.INTERNET': Permission.INTERNET}
+        # список Permission
+        API_ALL = list()
+        API_30 = [Permission.INSTALL_PACKAGES]
+    # ---------------------------------------------------------------------------
+    # конвертация текстовой строки Permission в объект Permission
+    def converter_str_to_permission(permissions_arr: list[str]) -> None:
+        for perm in permissions_arr:
+            API_ALL.append(API_DICT[perm])
+    # ---------------------------------------------------------------------------
+    # проверить права доступа на доступ
+    def permissions_check(perms) -> None:
+        for perm in perms:
+            if check_permission(perm) != True:
+                return False
+        return True
+    # ---------------------------------------------------------------------------
     # if 'android' == platform:
     if hasattr(__import__('sys'), 'getandroidapilevel'):
         try:
@@ -112,6 +100,7 @@ def permission_set(permissions_arr: list[str]) -> (None|str):
     else:
         # return 'Данный метод не реализован ...'
         return 'This method is not implemented ...'
+    # ---------------------------------------------------------------------------
 # *****************************************************************************************
 # тесты
 # если не модуль то выполнить программу
@@ -135,9 +124,6 @@ if __name__ == '__main__':
     myset2 = {6, 7, 8}
     myset3 = myset1.intersection(myset2)
     print(bool(myset3))
-    # test3
-    myset = set(API_ALL).intersection(set(API_30))
-    print(bool(myset))
     '''
     # Разность множеств: метод difference()
     myset1 = {1, 2, 3, 4, 5}
@@ -145,13 +131,9 @@ if __name__ == '__main__':
     myset3 = myset1.difference(myset2)
     print(myset3)
     '''
-    # test4
+    # test3
     myset1 = {1, 2, 3, 4, 5}
     myset2 = {3, 4, 6, 7, 8}
     myset3 = myset1.difference(myset2)
     print(myset3)
-    # test5
-    myset = set(API_ALL).difference(set(API_30))
-    print(myset)
-    print(list(myset))
 # *****************************************************************************************
