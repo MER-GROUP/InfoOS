@@ -8,7 +8,7 @@ __version__ = '1.00'
 # ++++++++++++++++++++++++ РАБОТА С ПРАВАДИ ДОСТУПА ВЕР1 ANDROID ++++++++++++++++++++++++++
 # собственные модули
 # Модуль для работы с правами доступа ОС Android
-from merlib.android.Access import permission_set
+from bind.Access import permission_set
 perms = ['Permission.WRITE_EXTERNAL_STORAGE',
         'Permission.READ_EXTERNAL_STORAGE',
         'Permission.VIBRATE',
