@@ -16,21 +16,25 @@ if hasattr(__import__('sys'), 'getandroidapilevel'):
     from android.permissions import Permission, request_permissions, check_permission
     # ----------------------------------------------------------------------
     # vars - права доступа которые нужно установить
-    perms_arr_str = ['Permission.WRITE_EXTERNAL_STORAGE',
-                    'Permission.READ_EXTERNAL_STORAGE',
-                    'Permission.VIBRATE',
-                    'Permission.INSTALL_PACKAGES']
+    perms_arr_str = [
+        'Permission.WRITE_EXTERNAL_STORAGE',
+        'Permission.READ_EXTERNAL_STORAGE',
+        'Permission.VIBRATE',
+        'Permission.INSTALL_PACKAGES'
+        ]
     # Добавить в файл byuildozer.spec
     # (list) Permissions
     # android.permissions = READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE, VIBRATE, INSTALL_PACKAGES
     # ----------------------------------------------------------------------
     # vars
     # словарь Permission
-    API_DICT = {'Permission.WRITE_EXTERNAL_STORAGE': Permission.READ_EXTERNAL_STORAGE,       
+    API_DICT = {
+        'Permission.WRITE_EXTERNAL_STORAGE': Permission.WRITE_EXTERNAL_STORAGE, # always the first    
+        'Permission.READ_EXTERNAL_STORAGE': Permission.READ_EXTERNAL_STORAGE, # always the second      
         'Permission.INSTALL_PACKAGES': Permission.INSTALL_PACKAGES, # API 30
         'Permission.INTERNET': Permission.INTERNET,
-        'Permission.VIBRATE': Permission.VIBRATE,
-        'Permission.WRITE_EXTERNAL_STORAGE': Permission.WRITE_EXTERNAL_STORAGE,}
+        'Permission.VIBRATE': Permission.VIBRATE
+        }
     # списки Permission
     API_ALL = list()
     API_30 = ['Permission.INSTALL_PACKAGES']
