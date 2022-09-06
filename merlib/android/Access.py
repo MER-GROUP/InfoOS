@@ -1,5 +1,5 @@
 '''
-module Access - класс для работы с правами доступа ОС Android
+module Access - для работы с правами доступа ОС Android
 
 Дополнительные сторонние модули для обработки файлов
     android
@@ -136,4 +136,32 @@ if __name__ == '__main__':
     myset2 = {3, 4, 6, 7, 8}
     myset3 = myset1.difference(myset2)
     print(myset3)
+    # test4
+    # vars
+    # словарь Permission
+    API_DICT = {'Permission.WRITE_EXTERNAL_STORAGE': 'WRITE_EXTERNAL_STORAGE',
+        'Permission.READ_EXTERNAL_STORAGE': 'READ_EXTERNAL_STORAGE',
+        'Permission.VIBRATE': 'VIBRATE',
+        'Permission.INSTALL_PACKAGES': 'INSTALL_PACKAGES', # API 30
+        'Permission.INTERNET': 'INTERNET'}
+    # строковый список Permission
+    perms_str = ['Permission.WRITE_EXTERNAL_STORAGE',
+                'Permission.READ_EXTERNAL_STORAGE',
+                'Permission.VIBRATE',
+                'Permission.INSTALL_PACKAGES',
+                'Permission.INTERNET']
+    # список Permission
+    API_ALL = list()
+    API_30 = ['Permission.INSTALL_PACKAGES']
+    # конвертация текстовой строки Permission в объект Permission
+    def converter_str_to_permission(perms_str: list[str]) -> None:
+        for perm in perms_str:
+            API_ALL.append(API_DICT[perm])
+    converter_str_to_permission(perms_str)
+    # Вывод словаря
+    print(f'API_ALL = {API_ALL}')
+    # исключаем API 30 c помощью множества
+    API_ALL = list(set(perms_str).difference(set(API_30)))
+    # Вывод API_ALL
+    print(f'API_ALL = {API_ALL}')
 # *****************************************************************************************
