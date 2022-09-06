@@ -6,80 +6,64 @@
 __version__ = '1.00'
 # *****************************************************************************************
 # ++++++++++++++++++++++++ РАБОТА С ПРАВАДИ ДОСТУПА ВЕР1 ANDROID ++++++++++++++++++++++++++
-# собственные модули
-# Модуль для работы с правами доступа ОС Android
-from bind.Access import permission_set
-perms = ['Permission.WRITE_EXTERNAL_STORAGE',
-        'Permission.READ_EXTERNAL_STORAGE',
-        'Permission.VIBRATE',
-        'Permission.INSTALL_PACKAGES']
-permission_set(perms)
+# если ОС Android, то загрузить следующие модули
+if hasattr(__import__('sys'), 'getandroidapilevel'):
+    # ----------------------------------------------------------------------
+    # api_version - определение версии SDK программного обеспечения
+    from android import api_version
+    # ----------------------------------------------------------------------
+    # permissions - права доступа на чтение и запись файлов
+    from android.permissions import Permission, request_permissions, check_permission
+    # ----------------------------------------------------------------------
+    # vars - права доступа которые нужно установить
+    perms_arr_str = ['Permission.WRITE_EXTERNAL_STORAGE',
+                'Permission.READ_EXTERNAL_STORAGE',
+                'Permission.VIBRATE',
+                'Permission.INSTALL_PACKAGES']
+    # ----------------------------------------------------------------------
+    # vars
+    # словарь Permission
+    API_DICT = {'Permission.WRITE_EXTERNAL_STORAGE': Permission.READ_EXTERNAL_STORAGE,       
+        'Permission.INSTALL_PACKAGES': Permission.INSTALL_PACKAGES, # API 30
+        'Permission.INTERNET': Permission.INTERNET,
+        'Permission.VIBRATE': Permission.VIBRATE,
+        'Permission.WRITE_EXTERNAL_STORAGE': Permission.WRITE_EXTERNAL_STORAGE,}
+    # списки Permission
+    API_ALL = list()
+    API_30 = ['Permission.INSTALL_PACKAGES']
+    # ----------------------------------------------------------------------
+    # конвертация текстовой строки Permission в объект Permission
+    def converter_str_to_permission(perms_arr_str: list[str]) -> None:
+        for perm in perms_arr_str:
+            API_ALL.append(API_DICT[perm])
+    # ----------------------------------------------------------------------
+    # разделение прав доступа по API и конвертация Permission
+    # API 30 и больше + Permission которые добавлены в API 30
+    # API 29 и меньше + Permission которые не менялись в API
+    if (30 <= api_version):
+        converter_str_to_permission(perms_arr_str)
+    else:              
+        converter_str_to_permission(list(set(perms_arr_str).difference(set(API_30))))
+    # ----------------------------------------------------------------------  
+    # проверить права доступа
+    def check_permissions(perms):
+        for perm in perms:
+            if check_permission(perm) != True:
+                return False
+        return True         
+    # ----------------------------------------------------------------------           
+    # Получить права доступа на чтение и запись
+    while check_permissions(API_ALL)!= True:
+        request_permissions(API_ALL)
+    # ----------------------------------------------------------------------
 # *****************************************************************************************
 # ++++++++++++++++++++++++ РАБОТА С ПРАВАДИ ДОСТУПА ВЕР2 ANDROID ++++++++++++++++++++++++++
-# # если ОС Android, то загрузить следующие модули
-# if hasattr(__import__('sys'), 'getandroidapilevel'):
-#     # ----------------------------------------------------------------------
-#     # модуль plyer - работа с железом устройства
-#     # from plyer import vibrator
-#     # ----------------------------------------------------------------------
-#     # api_version - определение версии SDK программного обеспечения
-#     from android import api_version
-#     # ----------------------------------------------------------------------
-#     # permissions - права доступа на чтение и запись файлов
-#     from android.permissions import Permission, request_permissions, check_permission
-#     # ----------------------------------------------------------------------
-#     # vars - права доступа которые нужно установить
-#     perms_arr_str = ['Permission.WRITE_EXTERNAL_STORAGE',
-#                 'Permission.READ_EXTERNAL_STORAGE',
-#                 'Permission.VIBRATE',
-#                 'Permission.INSTALL_PACKAGES']
-#     # ----------------------------------------------------------------------
-#     # vars
-#     # словарь Permission
-#     API_DICT = {'Permission.WRITE_EXTERNAL_STORAGE': Permission.READ_EXTERNAL_STORAGE,       
-#         'Permission.INSTALL_PACKAGES': Permission.INSTALL_PACKAGES, # API 30
-#         'Permission.INTERNET': Permission.INTERNET,
-#         'Permission.VIBRATE': Permission.VIBRATE,
-#         'Permission.WRITE_EXTERNAL_STORAGE': Permission.WRITE_EXTERNAL_STORAGE,}
-#     # списки Permission
-#     API_ALL = list()
-#     API_30 = ['Permission.INSTALL_PACKAGES']
-#     # ----------------------------------------------------------------------
-#     # конвертация текстовой строки Permission в объект Permission
-#     def converter_str_to_permission(perms_arr_str: list[str]) -> None:
-#         for perm in perms_arr_str:
-#             API_ALL.append(API_DICT[perm])
-#     # ----------------------------------------------------------------------
-#     # разделение прав доступа по API и конвертация Permission
-#     # API 30 и больше + Permission которые добавлены в API 30
-#     # API 29 и меньше + Permission которые не менялись в API
-#     if (30 <= api_version):
-#         converter_str_to_permission(perms_arr_str)
-#     else:              
-#         converter_str_to_permission(list(set(perms_arr_str).difference(set(API_30))))
-#     # ----------------------------------------------------------------------  
-#     # проверить права доступа
-#     def check_permissions(perms):
-#         for perm in perms:
-#             if check_permission(perm) != True:
-#                 return False
-#         return True         
-#     # ----------------------------------------------------------------------           
-#     # Получить права доступа на чтение и запись
-#     while check_permissions(API_ALL)!= True:
-#         request_permissions(API_ALL)
-#     # ----------------------------------------------------------------------
-# *****************************************************************************************
-# ++++++++++++++++++++++++ РАБОТА С ПРАВАДИ ДОСТУПА ВЕР3 ANDROID ++++++++++++++++++++++++++
 # # глобальная переменная
 # # разрешен ли доступ на чтение и запись файлов
 # is_access_open = True
 
 # # если ОС Android, то загрузить следующие модули
 # if hasattr(__import__('sys'), 'getandroidapilevel'):
-#     # ----------------------------------------------------------------------
-#     # модуль plyer - работа с железом устройства
-#     # from plyer import vibrator
 #     # ----------------------------------------------------------------------
 #     # api_version - определение версии SDK программного обеспечения
 #     from android import api_version
