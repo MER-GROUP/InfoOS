@@ -37,62 +37,76 @@ __all__ = ('permission_set')
 def permission_set(permissions_arr: list[str]) -> (None|str):
     '''
     Eng:\n
-    Set permissions for Android OS.\n
+        Set permissions for Android OS.\n
     Rus:\n
-    Задать разрешения для ОС Aandrois.\n
+        Задать разрешения для ОС Aandrois.\n
+
+    Пример создания массива Permissions:\n
+        permissions_arr = ['Permission.WRITE_EXTERNAL_STORAGE',\n
+                        'Permission.READ_EXTERNAL_STORAGE',\n
+                        'Permission.VIBRATE',\n
+                        'Permission.INSTALL_PACKAGES']\n
+
+    Не забываем добавить все Permissions в файл buildozer.spec\n
+        # (list) Permissions\n
+        android.permissions = READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE, VIBRATE, INSTALL_PACKAGES\n
     '''
-    # ---------------------------------------------------------------------------
-    # module
-    # if 'android' == platform:
-    if hasattr(__import__('sys'), 'getandroidapilevel'):
-        # api_version - определение версии SDK программного обеспечения
-        from android import api_version
-        # permissions - права доступа на чтение и запись файлов
-        from android.permissions import Permission, request_permissions, check_permission
-        # autoclass - импорт java классов
-        # JavaException - работа с исключениями java классов
-        from jnius import autoclass, cast, JavaException
-        # vars
-        # словарь Permission
-        API_DICT = {'Permission.WRITE_EXTERNAL_STORAGE': Permission.WRITE_EXTERNAL_STORAGE,
-            'Permission.READ_EXTERNAL_STORAGE': Permission.READ_EXTERNAL_STORAGE,
-            'Permission.VIBRATE': Permission.VIBRATE,
-            'Permission.INSTALL_PACKAGES': Permission.INSTALL_PACKAGES, # API 30
-            'Permission.INTERNET': Permission.INTERNET}
-        # список Permission
-        API_ALL = list()
-        API_30 = [Permission.INSTALL_PACKAGES]
-    # ---------------------------------------------------------------------------
-    # конвертация текстовой строки Permission в объект Permission
-    def converter_str_to_permission(permissions_arr: list[str]) -> None:
-        for perm in permissions_arr:
-            API_ALL.append(API_DICT[perm])
-    # ---------------------------------------------------------------------------
-    # проверить права доступа на доступ
-    def permissions_check(perms) -> None:
-        for perm in perms:
-            if check_permission(perm) != True:
-                return False
-        return True
-    # ---------------------------------------------------------------------------
-    # if 'android' == platform:
     if hasattr(__import__('sys'), 'getandroidapilevel'):
         try:
-            # algorithm
-            # конвертация Permission
-            converter_str_to_permission(permissions_arr)
-            perms = list()
-            # определить права доступа
+            # ----------------------------------------------------------------------
+            # autoclass - импорт java классов
+            # JavaException - работа с исключениями java классов
+            from jnius import autoclass, cast, JavaException
+            # ----------------------------------------------------------------------
+            # api_version - определение версии SDK программного обеспечения
+            from android import api_version
+            # ----------------------------------------------------------------------
+            # permissions - права доступа на чтение и запись файлов
+            from android.permissions import Permission, request_permissions, check_permission
+            # ----------------------------------------------------------------------
+            # vars - права доступа которые нужно установить
+            # # for tests #############################################
+            # perms_arr_str = ['Permission.WRITE_EXTERNAL_STORAGE', ###
+            #             'Permission.READ_EXTERNAL_STORAGE',       ###
+            #             'Permission.VIBRATE',                     ###
+            #             'Permission.INSTALL_PACKAGES']###############
+            perms_arr_str = permissions_arr
+            # ----------------------------------------------------------------------
+            # vars
+            # словарь Permission
+            API_DICT = {'Permission.WRITE_EXTERNAL_STORAGE': Permission.READ_EXTERNAL_STORAGE,       
+                'Permission.INSTALL_PACKAGES': Permission.INSTALL_PACKAGES, # API 30
+                'Permission.INTERNET': Permission.INTERNET,
+                'Permission.VIBRATE': Permission.VIBRATE,
+                'Permission.WRITE_EXTERNAL_STORAGE': Permission.WRITE_EXTERNAL_STORAGE,}
+            # списки Permission
+            API_ALL = list()
+            API_30 = ['Permission.INSTALL_PACKAGES']
+            # ----------------------------------------------------------------------
+            # конвертация текстовой строки Permission в объект Permission
+            def converter_str_to_permission(perms_arr_str: list[str]) -> None:
+                for perm in perms_arr_str:
+                    API_ALL.append(API_DICT[perm])
+            # ----------------------------------------------------------------------
+            # разделение прав доступа по API и конвертация Permission
             # API 30 и больше + Permission которые добавлены в API 30
-            # и Permission которые не менялись в API
+            # API 29 и меньше + Permission которые не менялись в API
             if (30 <= api_version):
-                perms = API_ALL
-            # API 29 и меньше + и Permission которые не менялись в API
+                converter_str_to_permission(perms_arr_str)
             else:              
-                perms = list(set(API_ALL).difference(set(API_30)))             
+                converter_str_to_permission(list(set(perms_arr_str).difference(set(API_30))))
+            # ----------------------------------------------------------------------  
+            # проверить права доступа
+            def check_permissions(perms):
+                for perm in perms:
+                    if check_permission(perm) != True:
+                        return False
+                return True         
+            # ----------------------------------------------------------------------           
             # Получить права доступа на чтение и запись
-            while permissions_check(perms)!= True:
-                request_permissions(perms)
+            while check_permissions(API_ALL)!= True:
+                request_permissions(API_ALL)
+            # ----------------------------------------------------------------------
         except JavaException as e:
             return 'EXCEPT JAVA: ' + str(e)
         except BaseException as e:
@@ -100,7 +114,6 @@ def permission_set(permissions_arr: list[str]) -> (None|str):
     else:
         # return 'Данный метод не реализован ...'
         return 'This method is not implemented ...'
-    # ---------------------------------------------------------------------------
 # *****************************************************************************************
 # тесты
 # если не модуль то выполнить программу
