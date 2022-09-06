@@ -17,9 +17,12 @@ if hasattr(__import__('sys'), 'getandroidapilevel'):
     # ----------------------------------------------------------------------
     # vars - права доступа которые нужно установить
     perms_arr_str = ['Permission.WRITE_EXTERNAL_STORAGE',
-                'Permission.READ_EXTERNAL_STORAGE',
-                'Permission.VIBRATE',
-                'Permission.INSTALL_PACKAGES']
+                    'Permission.READ_EXTERNAL_STORAGE',
+                    'Permission.VIBRATE',
+                    'Permission.INSTALL_PACKAGES']
+    # Добавить в файл byuildozer.spec
+    # (list) Permissions
+    # android.permissions = READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE, VIBRATE, INSTALL_PACKAGES
     # ----------------------------------------------------------------------
     # vars
     # словарь Permission
