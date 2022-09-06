@@ -29,11 +29,11 @@ if hasattr(__import__('sys'), 'getandroidapilevel'):
     # vars
     # словарь Permission
     API_DICT = {
-        'Permission.WRITE_EXTERNAL_STORAGE': Permission.READ_EXTERNAL_STORAGE,       
+        'Permission.WRITE_EXTERNAL_STORAGE': Permission.WRITE_EXTERNAL_STORAGE, # always the first    
+        'Permission.READ_EXTERNAL_STORAGE': Permission.READ_EXTERNAL_STORAGE, # always the second      
         'Permission.INSTALL_PACKAGES': Permission.INSTALL_PACKAGES, # API 30
         'Permission.INTERNET': Permission.INTERNET,
-        'Permission.VIBRATE': Permission.VIBRATE,
-        'Permission.WRITE_EXTERNAL_STORAGE': Permission.WRITE_EXTERNAL_STORAGE,
+        'Permission.VIBRATE': Permission.VIBRATE
         }
     # списки Permission
     API_ALL = list()
